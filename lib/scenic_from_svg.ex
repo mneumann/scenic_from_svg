@@ -138,7 +138,7 @@ defmodule Scenic.FromSVG do
   end
 
   defp node_to_mfa({:xmlElement, :path, :path, _, _, _, _, _, _, _, _, _} = node) do
-    path_to_mfa(node, %{})
+    [path_to_mfa(node, %{})]
   end
 
   defp node_to_mfa({:xmlElement, :g, :g, _, _, _, _, _, _, _, _, _} = node) do
@@ -180,7 +180,7 @@ defmodule Scenic.FromSVG do
   end
 
   defp tokenize_path(<<op, rest::binary>>, tok_rev)
-       when op in [?M, ?m, ?L, ?l, ?V, ?v, ?H, ?h, ?Z, ?z] do
+       when op in [?M, ?m, ?L, ?l, ?V, ?v, ?H, ?h, ?Z, ?z, ?C, ?c] do
     tokenize_path(rest, [op | tok_rev])
   end
 
@@ -195,11 +195,13 @@ defmodule Scenic.FromSVG do
 
   defp reduce_path_token([op | rest], path_cmds_rev, {_cx, _cy, _op}) when op in [?Z, ?z] do
     cmd = :close_path
-    reduce_path_token(rest, [cmd | path_cmds_rev], {nil, nil, nil})
+    # XXX:
+    {new_cx, new_cy} = {0.0, 0.0}
+    reduce_path_token(rest, [cmd | path_cmds_rev], {new_cx, new_cy, nil})
   end
 
   defp reduce_path_token([op | rest], path_cmds_rev, {cx, cy, _op})
-       when op in [?M, ?m, ?L, ?l, ?V, ?v, ?H, ?h] do
+       when op in [?M, ?m, ?L, ?l, ?V, ?v, ?H, ?h, ?C, ?c] do
     reduce_path_token(rest, path_cmds_rev, {cx, cy, op})
   end
 
@@ -253,6 +255,25 @@ defmodule Scenic.FromSVG do
     reduce_path_token(rest, [cmd | path_cmds_rev], {cx, y, op})
   end
 
+  defp reduce_path_token([c1x, c1y, c2x, c2y, x, y | rest], path_cmds_rev, {_cx, _cy, ?C = op})
+       when is_float(c1x) and is_float(c1y) and is_float(c2x) and is_float(c2y) and is_float(x) and
+              is_float(y) do
+    cmd = {:bezier_to, c1x, c1y, c2x, c2y, x, y}
+    reduce_path_token(rest, [cmd | path_cmds_rev], {x, y, op})
+  end
+
+  defp reduce_path_token(
+         [c1dx, c1dy, c2dx, c2dy, dx, dy | rest],
+         path_cmds_rev,
+         {cx, cy, ?c = op}
+       )
+       when is_float(c1dx) and is_float(c1dy) and is_float(c2dx) and is_float(c2dy) and
+              is_float(dx) and is_float(dy) do
+    {c1x, c1y, c2x, c2y, x, y} = {c1dx + cx, c1dy + cy, c2dx + cx, c2dy + cy, dx + cx, dy + cy}
+    cmd = {:bezier_to, c1x, c1y, c2x, c2y, x, y}
+    reduce_path_token(rest, [cmd | path_cmds_rev], {x, y, op})
+  end
+
   defp parse_style(node) do
     (xpath(node, ~x"./@style"so) || "")
     |> String.split(";", trim: true)
@@ -271,15 +292,13 @@ defmodule Scenic.FromSVG do
   defp put_style(map, key, value), do: Map.put(map, key, value |> String.trim())
 
   defp fill_from_style(style) do
-    {r, g, b} = fill_color(style)
-    opacity = fill_opacity(style)
-    {:fill, {r, g, b, opacity}}
+    case {fill_color(style), fill_opacity(style)} do
+      {nil, _} -> nil
+      {{r, g, b}, opacity} -> {:fill, {r, g, b, opacity}}
+    end
   end
 
-  defp fill_color(style) do
-    {r, g, b} = parse_color(style["fill"])
-    {r, g, b}
-  end
+  defp fill_color(style), do: parse_color(style["fill"] || "none")
 
   defp fill_opacity(%{"fill-opacity" => opacity}) do
     {opacity, ""} = Float.parse(opacity)
@@ -294,10 +313,15 @@ defmodule Scenic.FromSVG do
          %{"stroke" => stroke, "stroke-opacity" => stroke_opacity, "stroke-width" => stroke_width} =
            _style
        ) do
-    {r, g, b} = parse_color(stroke)
-    {opacity, ""} = Float.parse(stroke_opacity)
-    {width, ""} = Float.parse(stroke_width)
-    {:stroke, {trunc(width), {r, g, b, trunc(opacity * 255)}}}
+    case parse_color(stroke) do
+      nil ->
+        nil
+
+      {r, g, b} ->
+        {opacity, ""} = Float.parse(stroke_opacity)
+        {width, ""} = Float.parse(stroke_width)
+        {:stroke, {trunc(width), {r, g, b, trunc(opacity * 255)}}}
+    end
   end
 
   defp stroke_from_style(_style), do: nil
@@ -307,6 +331,7 @@ defmodule Scenic.FromSVG do
     {:font_size, trunc(font_size_in_px)}
   end
 
+  defp parse_color("none"), do: nil
   defp parse_color("black"), do: {0, 0, 0}
   defp parse_color("white"), do: {255, 255, 255}
 
