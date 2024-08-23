@@ -41,18 +41,23 @@ defmodule Scenic.FromSVG.Path do
     reduce_tokens(rest, path_cmds_rev, {cx, cy, op})
   end
 
-  defp reduce_tokens([x, y | rest], path_cmds_rev, {_cx, _cy, ?M = op})
+  defp reduce_tokens([x, y | rest], path_cmds_rev, {_cx, _cy, ?M})
        when is_float(x) and is_float(y) do
     cmd = {:move_to, x, y}
-    reduce_tokens(rest, [cmd | path_cmds_rev], {x, y, op})
+
+    # "If a moveto is followed by multiple pairs of coordinates, the subsequent
+    # pairs are treated as implicit lineto commands"
+    reduce_tokens(rest, [cmd | path_cmds_rev], {x, y, ?L})
   end
 
-  defp reduce_tokens([dx, dy | rest], path_cmds_rev, {cx, cy, ?m = op})
+  defp reduce_tokens([dx, dy | rest], path_cmds_rev, {cx, cy, ?m})
        when is_float(dx) and is_float(dy) do
     x = cx + dx
     y = cy + dy
     cmd = {:move_to, x, y}
-    reduce_tokens(rest, [cmd | path_cmds_rev], {x, y, op})
+    # "If a moveto is followed by multiple pairs of coordinates, the subsequent
+    # pairs are treated as implicit lineto commands"
+    reduce_tokens(rest, [cmd | path_cmds_rev], {x, y, ?l})
   end
 
   defp reduce_tokens([x, y | rest], path_cmds_rev, {_cx, _cy, ?L = op})
