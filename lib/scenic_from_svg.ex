@@ -9,6 +9,7 @@ defmodule Scenic.FromSVG do
   @type prim ::
           {:rect, {Float.t(), Float.t()}, prim_opts()}
           | {:circle, Float.t(), prim_opts()}
+          | {:ellipse, {Float.t(), Float.t()}, prim_opts()}
           | {:text, String.t(), prim_opts()}
           | {:path, [Scenic.Primitive.Path.cmd()], prim_opts()}
           | {:group, [prim()], prim_opts()}
@@ -105,6 +106,7 @@ defmodule Scenic.FromSVG do
 
   def prim_spec({:rect, {w, h}, opts}), do: Scenic.Primitives.rect_spec({w, h}, opts)
   def prim_spec({:circle, r, opts}), do: Scenic.Primitives.circle_spec(r, opts)
+  def prim_spec({:ellipse, {rx, ry}, opts}), do: Scenic.Primitives.ellipse_spec({rx, ry}, opts)
   def prim_spec({:text, text, opts}), do: Scenic.Primitives.text_spec(text, opts)
   def prim_spec({:path, cmds, opts}), do: Scenic.Primitives.path_spec(cmds, opts)
 
@@ -160,6 +162,39 @@ defmodule Scenic.FromSVG do
       |> Enum.filter(& &1)
 
     {:circle, r, opts}
+  end
+
+  defp node_to_prim({:xmlElement, :ellipse, :ellipse, _, _, _, _, _, [], _, _, _} = node) do
+    style = node |> parse_style()
+    _id = node |> xpath(~x"./@id"so)
+    cx = node |> xpath(~x"./@cx"f)
+    cy = node |> xpath(~x"./@cy"f)
+    rx = node |> xpath(~x"./@rx"f)
+    ry = node |> xpath(~x"./@ry"f)
+
+    # XXX: what if both cx/cy and transform is specified?
+    transform_opts =
+      parse_transform(node)
+      |> Enum.map(fn
+        {:t, {tx, ty}} -> {:t, {tx + cx, ty + cy}}
+        x -> x
+      end)
+
+    transform_opts =
+      case Keyword.get(transform_opts, :t) do
+        nil -> [{:t, {cx, cy}} | transform_opts]
+        _ -> transform_opts
+      end
+
+    opts =
+      [
+        fill_from_style(style),
+        stroke_from_style(style)
+        | transform_opts
+      ]
+      |> Enum.filter(& &1)
+
+    {:ellipse, {rx, ry}, opts}
   end
 
   defp node_to_prim({:xmlElement, :text, :text, _, _, _, _, _, _, _, _, _} = node) do
@@ -261,6 +296,11 @@ defmodule Scenic.FromSVG do
     {scale_x, <<",", rest::binary>>} = Float.parse(rest)
     {scale_y, ")"} = Float.parse(rest)
     parse_transform(rest, [{:scale, {scale_x, scale_y}} | opts])
+  end
+
+  defp parse_transform("rotate(" <> rest, opts) do
+    {rotate, <<")", rest::binary>>} = Float.parse(rest)
+    parse_transform(rest, [{:rotate, rotate} | opts])
   end
 
   defp parse_transform("matrix(" <> rest, opts) do
