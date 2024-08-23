@@ -138,20 +138,43 @@ defmodule Scenic.FromSVG do
   end
 
   defp node_to_mfa({:xmlElement, :path, :path, _, _, _, _, _, _, _, _, _} = node) do
-    [path_to_mfa(node, %{})]
+    [path_to_mfa(node, %{}, nil)]
   end
 
   defp node_to_mfa({:xmlElement, :g, :g, _, _, _, _, _, _, _, _, _} = node) do
     node_style = parse_style(node)
 
+    matrix = node |> xpath(~x"./@transform"so) |> transform_matrix()
+
     node
     |> xpath(~x"./path"el)
-    |> Enum.map(&path_to_mfa(&1, node_style))
+    |> Enum.map(&path_to_mfa(&1, node_style, matrix))
   end
 
   defp node_to_mfa(_node), do: []
 
-  defp path_to_mfa(path, node_style) do
+  defp transform_matrix("matrix(" <> s) do
+    # https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
+    [a, b, c, d, e, f] =
+      s
+      |> String.trim_trailing(")")
+      |> String.split([" ", ","], trim: true)
+      |> Enum.map(&Float.parse/1)
+      |> Enum.map(fn {num, ""} -> num end)
+
+    [
+      [a, c, e, 0],
+      [b, d, f, 0],
+      [0, 0, 1, 0],
+      [0, 0, 0, 0]
+    ]
+    |> Enum.flat_map(fn x -> x end)
+    |> Scenic.Math.Matrix.Utils.to_binary()
+  end
+
+  defp transform_matrix(_), do: nil
+
+  defp path_to_mfa(path, node_style, matrix) do
     style = Map.merge(node_style, parse_style(path))
     _id = path |> xpath(~x"./@id"so)
     d = path |> xpath(~x"./@d"s)
@@ -163,7 +186,8 @@ defmodule Scenic.FromSVG do
     opts =
       [
         fill_from_style(style),
-        stroke_from_style(style)
+        stroke_from_style(style),
+        matrix && {:matrix, matrix}
       ]
       |> Enum.filter(& &1)
 
