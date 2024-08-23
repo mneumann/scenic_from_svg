@@ -137,33 +137,38 @@ defmodule Scenic.FromSVG do
     end)
   end
 
+  defp node_to_mfa({:xmlElement, :path, :path, _, _, _, _, _, _, _, _, _} = node) do
+    path_to_mfa(node, %{})
+  end
+
   defp node_to_mfa({:xmlElement, :g, :g, _, _, _, _, _, _, _, _, _} = node) do
     node_style = parse_style(node)
 
     node
     |> xpath(~x"./path"el)
-    |> Enum.map(fn
-      path ->
-        style = Map.merge(node_style, parse_style(path))
-        _id = path |> xpath(~x"./@id"so)
-        d = path |> xpath(~x"./@d"s)
-
-        path_cmds =
-          tokenize_path(d, [])
-          |> reduce_path_token([:begin], {0.0, 0.0, nil})
-
-        opts =
-          [
-            fill_from_style(style),
-            stroke_from_style(style)
-          ]
-          |> Enum.filter(& &1)
-
-        {Scenic.Primitives, :path, [path_cmds, opts]}
-    end)
+    |> Enum.map(&path_to_mfa(&1, node_style))
   end
 
   defp node_to_mfa(_node), do: []
+
+  defp path_to_mfa(path, node_style) do
+    style = Map.merge(node_style, parse_style(path))
+    _id = path |> xpath(~x"./@id"so)
+    d = path |> xpath(~x"./@d"s)
+
+    path_cmds =
+      tokenize_path(d, [])
+      |> reduce_path_token([:begin], {0.0, 0.0, nil})
+
+    opts =
+      [
+        fill_from_style(style),
+        stroke_from_style(style)
+      ]
+      |> Enum.filter(& &1)
+
+    {Scenic.Primitives, :path, [path_cmds, opts]}
+  end
 
   # Upper case = absolute coordinates
   # lower case = relative coordinates
