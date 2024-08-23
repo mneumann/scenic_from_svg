@@ -5,12 +5,19 @@ defmodule Scenic.FromSVG do
 
   import SweetXml
 
-  @spec svg_to_mfas(binary()) :: [mfa()]
+  @type prim_opts :: [any()]
+  @type prim ::
+          {:rect, {Float.t(), Float.t()}, prim_opts()}
+          | {:circle, Float.t(), prim_opts()}
+          | {:text, String.t(), prim_opts()}
+          | {:path, [Scenic.Primitive.Path.cmd()], prim_opts()}
+          | {:group, [prim()], prim_opts()}
+
+  @spec svg_to_prim(binary()) :: prim()
 
   @doc """
-  Parses the SVG into a list of MFAs (Module, Function, Arguments), each
-  representing a Scenic primitive. We use MFAs in order to make testing and serialization
-  trivial.
+  Parses the SVG into a (complex) drawing primitive. As :group is a drawing primitive,
+  this returns a single primitive.
 
   ## Examples
 
@@ -27,38 +34,84 @@ defmodule Scenic.FromSVG do
       ...>       </g>
       ...>     </svg>
       ...> )
-      ...> |> Scenic.FromSVG.svg_to_mfas()
-      [
-        {Scenic.Primitives, :rect, [{100.0, 100.0}, [fill: {255, 0, 0, 255}, t: {10.0, 10.0} ]]},
-        {Scenic.Primitives, :text, ["Hello", [fill: {0, 0, 0, 255}, font_size: 64, text_align: :left, font: :roboto, t: {80, 80}]]},
-        {Scenic.Primitives, :circle, [20.0, [fill: {173, 28, 28, 181}, t: {180.0, 180.0}]]},
-        {Scenic.Primitives, :path, [[:begin, {:move_to, 458.94046, 243.85936}, {:line_to, 498.94046, 243.85936}, {:line_to, 518.94046, 278.49936}, {:line_to, 498.94046000000003, 313.13936}, {:line_to, 458.94046000000003, 313.13936}, {:line_to, 438.94046000000003, 278.49936}, :close_path], [{:fill, {255, 255, 255, 255}}]]},
-        {Scenic.Primitives, :path, [[:begin, {:move_to, 218.94046, 243.85936}, {:line_to, 258.94046000000003, 243.85936}, {:line_to, 278.94046000000003, 278.49936}, {:line_to, 258.94046000000003, 313.13936}, {:line_to, 218.94046000000003, 313.13936}, {:line_to, 198.94046000000003, 278.49936}, :close_path], [{:fill, {255, 255, 255, 255}}]]}
-      ]
+      ...> |> Scenic.FromSVG.svg_to_prim()
+      {:group,
+       [
+         {:rect, {100.0, 100.0}, [fill: {255, 0, 0, 255}, t: {10.0, 10.0}]},
+         {:group,
+          [
+            {:text, "Hello",
+             [fill: {0, 0, 0, 255}, font_size: 64, text_align: :left, font: :roboto, t: {80, 80}]}
+          ], []},
+         {:circle, 20.0, [fill: {173, 28, 28, 181}, t: {180.0, 180.0}]},
+         {:group,
+          [
+            {:path,
+             [
+               :begin,
+               {:move_to, 458.94046, 243.85936},
+               {:line_to, 498.94046, 243.85936},
+               {:line_to, 518.94046, 278.49936},
+               {:line_to, 498.94046000000003, 313.13936},
+               {:line_to, 458.94046000000003, 313.13936},
+               {:line_to, 438.94046000000003, 278.49936},
+               :close_path
+             ], []},
+            {:path,
+             [
+               :begin,
+               {:move_to, 218.94046, 243.85936},
+               {:line_to, 258.94046000000003, 243.85936},
+               {:line_to, 278.94046000000003, 278.49936},
+               {:line_to, 258.94046000000003, 313.13936},
+               {:line_to, 218.94046000000003, 313.13936},
+               {:line_to, 198.94046000000003, 278.49936},
+               :close_path
+             ], []}
+          ], [{:fill, {255, 255, 255, 255}}]}
+       ], []}
 
   """
 
-  def svg_to_mfas(svg) when is_binary(svg) do
+  def svg_to_prim(svg) when is_binary(svg) do
     {:xmlElement, :svg, :svg, _, _, _, _, _attrs, children, _, _, _} =
       svg |> parse() |> xpath(~x"///svg"e)
 
-    children
-    |> Enum.flat_map(&node_to_mfa/1)
+    children =
+      children
+      |> Enum.map(&node_to_prim/1)
+      |> Enum.filter(& &1)
+
+    {:group, children, []}
   end
 
-  @spec draw_svg(Scenic.Graph.t(), binary()) :: Scenic.Graph.t()
+  @spec svg_spec(binary()) :: Scenic.Graph.deferred()
 
   @doc """
-  Draws all supported primitives of a SVG to a `Scenic.Graph`.
+  Converts the SVG into a deferred graph.
   """
 
-  def draw_svg(graph, svg) do
+  def svg_spec(svg) do
     svg
-    |> svg_to_mfas()
-    |> Enum.reduce(graph, fn {m, f, a}, graph -> apply(m, f, [graph | a]) end)
+    |> svg_to_prim()
+    |> prim_spec()
   end
 
-  defp node_to_mfa({:xmlElement, :rect, :rect, _, _, _, _, _, [], _, _, _} = node) do
+  @spec prim_spec(prim()) :: Scenic.Graph.deferred()
+
+  @doc """
+  Converts the drawing primitive into a deferred graph.
+  """
+
+  def prim_spec({:rect, {w, h}, opts}), do: Scenic.Primitives.rect_spec({w, h}, opts)
+  def prim_spec({:circle, r, opts}), do: Scenic.Primitives.circle_spec(r, opts)
+  def prim_spec({:text, text, opts}), do: Scenic.Primitives.text_spec(text, opts)
+  def prim_spec({:path, cmds, opts}), do: Scenic.Primitives.path_spec(cmds, opts)
+
+  def prim_spec({:group, children, opts}),
+    do: Scenic.Primitives.group_spec(Enum.map(children, &prim_spec/1), opts)
+
+  defp node_to_prim({:xmlElement, :rect, :rect, _, _, _, _, _, [], _, _, _} = node) do
     style = node |> parse_style()
     _id = node |> xpath(~x"./@id"so)
     width = node |> xpath(~x"./@width"f)
@@ -74,10 +127,10 @@ defmodule Scenic.FromSVG do
       ]
       |> Enum.filter(& &1)
 
-    [{Scenic.Primitives, :rect, [{width, height}, opts]}]
+    {:rect, {width, height}, opts}
   end
 
-  defp node_to_mfa({:xmlElement, :circle, :circle, _, _, _, _, _, [], _, _, _} = node) do
+  defp node_to_prim({:xmlElement, :circle, :circle, _, _, _, _, _, [], _, _, _} = node) do
     style = node |> parse_style()
     _id = node |> xpath(~x"./@id"so)
     cx = node |> xpath(~x"./@cx"f)
@@ -92,10 +145,10 @@ defmodule Scenic.FromSVG do
       ]
       |> Enum.filter(& &1)
 
-    [{Scenic.Primitives, :circle, [r, opts]}]
+    {:circle, r, opts}
   end
 
-  defp node_to_mfa({:xmlElement, :text, :text, _, _, _, _, _, _, _, _, _} = node) do
+  defp node_to_prim({:xmlElement, :text, :text, _, _, _, _, _, _, _, _, _} = node) do
     node_style = parse_style(node)
     # node_x = node |> xpath(~x"./@x"f) |> trunc
     # node_y = node |> xpath(~x"./@y"f) |> trunc
@@ -111,47 +164,75 @@ defmodule Scenic.FromSVG do
           {1.0, 1.0}
       end
 
-    node
-    |> xpath(~x"./tspan"el)
-    |> Enum.map(fn
-      tspan ->
-        style = Map.merge(node_style, parse_style(tspan))
-        _id = tspan |> xpath(~x"./@id"so)
-        x = (scale_x * xpath(tspan, ~x"./@x"f)) |> trunc
-        y = (scale_y * xpath(tspan, ~x"./@y"f)) |> trunc
-        text_value = tspan |> xpath(~x"./text()"s)
+    children =
+      node
+      |> xpath(~x"./tspan"el)
+      |> Enum.map(fn
+        tspan ->
+          style = Map.merge(node_style, parse_style(tspan))
+          _id = tspan |> xpath(~x"./@id"so)
+          x = (scale_x * xpath(tspan, ~x"./@x"f)) |> trunc
+          y = (scale_y * xpath(tspan, ~x"./@y"f)) |> trunc
+          text_value = tspan |> xpath(~x"./text()"s)
 
-        opts =
-          [
-            fill_from_style(style),
-            stroke_from_style(style),
-            font_size_from_style(style),
-            text_align: :left,
-            # XXX
-            font: :roboto,
-            t: {x, y}
-          ]
-          |> Enum.filter(& &1)
+          opts =
+            [
+              fill_from_style(style),
+              stroke_from_style(style),
+              font_size_from_style(style),
+              text_align: :left,
+              # XXX
+              font: :roboto,
+              t: {x, y}
+            ]
+            |> Enum.filter(& &1)
 
-        {Scenic.Primitives, :text, [text_value, opts]}
-    end)
+          {:text, text_value, opts}
+      end)
+
+    {:group, children, []}
   end
 
-  defp node_to_mfa({:xmlElement, :path, :path, _, _, _, _, _, _, _, _, _} = node) do
-    [path_to_mfa(node, %{}, nil)]
-  end
-
-  defp node_to_mfa({:xmlElement, :g, :g, _, _, _, _, _, _, _, _, _} = node) do
-    node_style = parse_style(node)
-
+  defp node_to_prim({:xmlElement, :g, :g, _, _, _, _, _, children, _, _, _} = node) do
+    style = parse_style(node)
     matrix = node |> xpath(~x"./@transform"so) |> transform_matrix()
 
-    node
-    |> xpath(~x"./path"el)
-    |> Enum.map(&path_to_mfa(&1, node_style, matrix))
+    children =
+      children
+      |> Enum.map(&node_to_prim/1)
+      |> Enum.filter(& &1)
+
+    opts =
+      [
+        fill_from_style(style),
+        stroke_from_style(style),
+        matrix && {:matrix, matrix}
+      ]
+      |> Enum.filter(& &1)
+
+    {:group, children, opts}
   end
 
-  defp node_to_mfa(_node), do: []
+  defp node_to_prim({:xmlElement, :path, :path, _, _, _, _, _, _, _, _, _} = node) do
+    style = parse_style(node)
+    _id = node |> xpath(~x"./@id"so)
+    d = node |> xpath(~x"./@d"s)
+
+    path_cmds =
+      Scenic.FromSVG.Path.tokenize(d)
+      |> Scenic.FromSVG.Path.reduce_tokens()
+
+    opts =
+      [
+        fill_from_style(style),
+        stroke_from_style(style)
+      ]
+      |> Enum.filter(& &1)
+
+    {:path, path_cmds, opts}
+  end
+
+  defp node_to_prim(_node), do: nil
 
   defp transform_matrix("matrix(" <> s) do
     # https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
@@ -173,26 +254,6 @@ defmodule Scenic.FromSVG do
   end
 
   defp transform_matrix(_), do: nil
-
-  defp path_to_mfa(path, node_style, matrix) do
-    style = Map.merge(node_style, parse_style(path))
-    _id = path |> xpath(~x"./@id"so)
-    d = path |> xpath(~x"./@d"s)
-
-    path_cmds =
-      Scenic.FromSVG.Path.tokenize(d)
-      |> Scenic.FromSVG.Path.reduce_tokens()
-
-    opts =
-      [
-        fill_from_style(style),
-        stroke_from_style(style),
-        matrix && {:matrix, matrix}
-      ]
-      |> Enum.filter(& &1)
-
-    {Scenic.Primitives, :path, [path_cmds, opts]}
-  end
 
   defp parse_style(node) do
     (xpath(node, ~x"./@style"so) || "")

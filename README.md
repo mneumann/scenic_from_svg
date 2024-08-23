@@ -26,7 +26,7 @@
   Elixir code from it, without ever having read the SVG spec thoughtfully
   myself. Though, the "concept" looks promising.
 
-* Only `<circle>`, `<rect>`, `<text>` and `<g>`/`<path>` are somewhat
+* Only `<circle>`, `<rect>`, `<text>`, `<g>` and `<path>` are somewhat
   implemented.
 
 * `<text>` does not properly map font names (yet).

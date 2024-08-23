@@ -5,21 +5,21 @@ defmodule ScenicFromSvgTest do
   @commit_fixtures true
 
   test "it converts example/input.svg" do
-    test_fixture("test/fixtures/example/input.svg", "test/fixtures/example/expected.mfa")
+    test_fixture("test/fixtures/example/input.svg", "test/fixtures/example/expected.prim")
   end
 
-  defp test_fixture(input_svg_file, expected_mfa_file) do
-    given_mfa =
+  defp test_fixture(input_svg_file, expected_prim_file) do
+    given_prim =
       File.read!(input_svg_file)
-      |> Scenic.FromSVG.svg_to_mfas()
+      |> Scenic.FromSVG.svg_to_prim()
       |> inspect(pretty: true, limit: :infinity)
 
-    expected_mfa = File.read!(expected_mfa_file)
+    expected_prim = File.read!(expected_prim_file)
 
-    if @commit_fixtures and given_mfa != expected_mfa do
-      File.write!(expected_mfa_file, given_mfa)
+    if @commit_fixtures and given_prim != expected_prim do
+      File.write!(expected_prim_file, given_prim)
     end
 
-    assert given_mfa == expected_mfa
+    assert given_prim == expected_prim
   end
 end
