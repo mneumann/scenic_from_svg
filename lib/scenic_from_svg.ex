@@ -138,7 +138,18 @@ defmodule Scenic.FromSVG do
     r = node |> xpath(~x"./@r"f)
 
     # XXX: what if both cx/cy and transform is specified?
-    transform_opts = parse_transform(node) ++ [t: {cx, cy}]
+    transform_opts =
+      parse_transform(node)
+      |> Enum.map(fn
+        {:t, {tx, ty}} -> {:t, {tx + cx, ty + cy}}
+        x -> x
+      end)
+
+    transform_opts =
+      case Keyword.get(transform_opts, :t) do
+        nil -> [{:t, {cx, cy}} | transform_opts]
+        _ -> transform_opts
+      end
 
     opts =
       [
