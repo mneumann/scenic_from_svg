@@ -137,11 +137,14 @@ defmodule Scenic.FromSVG do
     cy = node |> xpath(~x"./@cy"f)
     r = node |> xpath(~x"./@r"f)
 
+    # XXX: what if both cx/cy and transform is specified?
+    transform_opts = parse_transform(node) ++ [t: {cx, cy}]
+
     opts =
       [
         fill_from_style(style),
-        stroke_from_style(style),
-        t: {cx, cy}
+        stroke_from_style(style)
+        | transform_opts
       ]
       |> Enum.filter(& &1)
 
