@@ -68,7 +68,7 @@ defmodule Scenic.FromSVG do
                {:line_to, 198.94046000000003, 278.49936},
                :close_path
              ], []}
-          ], [{:fill, {255, 255, 255, 255}}]}
+          ], [{:fill, {255, 255, 255, 255}}, {:stroke, {2, {0, 0, 0}}}]}
        ], []}
 
   """
@@ -316,24 +316,31 @@ defmodule Scenic.FromSVG do
 
   defp fill_opacity(_style), do: 255
 
-  defp stroke_from_style(%{"stroke" => "none"}), do: nil
+  defp stroke_from_style(style) do
+    stroke = style["stroke"] |> parse_color()
+    stroke_opacity = style["stroke-opacity"] |> parse_float()
+    stroke_width = style["stroke-width"] |> parse_float()
 
-  defp stroke_from_style(
-         %{"stroke" => stroke, "stroke-opacity" => stroke_opacity, "stroke-width" => stroke_width} =
-           _style
-       ) do
-    case parse_color(stroke) do
-      nil ->
-        nil
+    case {stroke, stroke_opacity, stroke_width} do
+      {{r, g, b}, nil, width} when is_float(width) ->
+        {:stroke, {trunc(width), {r, g, b}}}
 
-      {r, g, b} ->
-        {opacity, ""} = Float.parse(stroke_opacity)
-        {width, ""} = Float.parse(stroke_width)
+      {{r, g, b}, opacity, width} when is_float(width) ->
         {:stroke, {trunc(width), {r, g, b, trunc(opacity * 255)}}}
+
+      _ ->
+        nil
     end
   end
 
-  defp stroke_from_style(_style), do: nil
+  defp parse_float(nil), do: nil
+
+  defp parse_float(s) do
+    case Float.parse(s) do
+      {value, ""} -> value
+      _ -> nil
+    end
+  end
 
   defp font_size_from_style(%{"font-size" => font_size}) do
     {font_size_in_px, "px"} = Float.parse(font_size)
@@ -350,4 +357,6 @@ defmodule Scenic.FromSVG do
     {blue, ""} = Integer.parse(<<bh, bl>>, 16)
     {red, green, blue}
   end
+
+  defp parse_color(_), do: nil
 end
