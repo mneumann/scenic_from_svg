@@ -91,22 +91,22 @@ defmodule Scenic.FromSVG.Path do
     reduce_tokens(rest, [cmd | path_cmds_rev], {cx, y, op})
   end
 
-  defp reduce_tokens([c1x, c1y, c2x, c2y, x, y | rest], path_cmds_rev, {_cx, _cy, ?C = op})
-       when is_float(c1x) and is_float(c1y) and is_float(c2x) and is_float(c2y) and is_float(x) and
+  defp reduce_tokens([x1, y1, x2, y2, x, y | rest], path_cmds_rev, {_cx, _cy, ?C = op})
+       when is_float(x1) and is_float(y1) and is_float(x2) and is_float(y2) and is_float(x) and
               is_float(y) do
-    cmd = {:bezier_to, c1x, c1y, c2x, c2y, x, y}
+    cmd = {:bezier_to, x1, y1, x2, y2, x, y}
     reduce_tokens(rest, [cmd | path_cmds_rev], {x, y, op})
   end
 
   defp reduce_tokens(
-         [c1dx, c1dy, c2dx, c2dy, dx, dy | rest],
+         [dx1, dy1, dx2, dy2, dx, dy | rest],
          path_cmds_rev,
          {cx, cy, ?c = op}
        )
-       when is_float(c1dx) and is_float(c1dy) and is_float(c2dx) and is_float(c2dy) and
+       when is_float(dx1) and is_float(dy1) and is_float(dx2) and is_float(dy2) and
               is_float(dx) and is_float(dy) do
-    {c1x, c1y, c2x, c2y, x, y} = {c1dx + cx, c1dy + cy, c2dx + cx, c2dy + cy, dx + cx, dy + cy}
-    cmd = {:bezier_to, c1x, c1y, c2x, c2y, x, y}
+    {x1, y1, x2, y2, x, y} = {dx1 + cx, dy1 + cy, dx2 + cx, dy2 + cy, dx + cx, dy + cy}
+    cmd = {:bezier_to, x1, y1, x2, y2, x, y}
     reduce_tokens(rest, [cmd | path_cmds_rev], {x, y, op})
   end
 end
