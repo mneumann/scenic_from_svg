@@ -5,10 +5,13 @@ defmodule ScenicFromSvgTest do
   @commit_fixtures true
 
   test "it converts example/input.svg" do
-    test_fixture("test/fixtures/example/input.svg", "test/fixtures/example/expected.prim")
+    test_fixture("example")
+    test_fixture("simple")
   end
 
-  defp test_fixture(input_svg_file, expected_prim_file) do
+  defp test_fixture(fixture) do
+    input_svg_file = Path.join(["test", "fixtures", fixture, "input.svg"])
+    expected_prim_file = Path.join(["test", "fixtures", fixture, "expected.prim"])
     given_prim =
       File.read!(input_svg_file)
       |> Scenic.FromSVG.svg_to_prim()
