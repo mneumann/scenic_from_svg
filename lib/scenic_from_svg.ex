@@ -261,7 +261,14 @@ defmodule Scenic.FromSVG do
       {k, v}
     end)
     |> Enum.into(%{})
+    |> put_style("stroke", xpath(node, ~x"./@stroke"so))
+    |> put_style("fill", xpath(node, ~x"./@fill"so))
+    |> put_style("fill-rule", xpath(node, ~x"./@fill-rule"so))
   end
+
+  defp put_style(map, _key, nil), do: map
+  defp put_style(map, _key, ""), do: map
+  defp put_style(map, key, value), do: Map.put(map, key, value |> String.trim())
 
   defp fill_from_style(style) do
     {r, g, b} = fill_color(style)
