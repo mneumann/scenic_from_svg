@@ -7,6 +7,7 @@ defmodule ScenicFromSvgTest do
   test "it converts example/input.svg" do
     test_fixture("example")
     test_fixture("simple")
+    test_fixture("complex")
   end
 
   defp test_fixture(fixture) do

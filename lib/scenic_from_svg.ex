@@ -199,6 +199,7 @@ defmodule Scenic.FromSVG do
 
   defp node_to_prim({:xmlElement, :text, :text, _, _, _, _, _, _, _, _, _} = node) do
     node_style = parse_style(node)
+    _id = node |> xpath(~x"./@id"so)
     # node_x = node |> xpath(~x"./@x"f) |> trunc
     # node_y = node |> xpath(~x"./@y"f) |> trunc
 
@@ -213,9 +214,10 @@ defmodule Scenic.FromSVG do
           {1.0, 1.0}
       end
 
+    tspans = node |> xpath(~x"./tspan"el)
+
     children =
-      node
-      |> xpath(~x"./tspan"el)
+      tspans
       |> Enum.map(fn
         tspan ->
           style = Map.merge(node_style, parse_style(tspan))
@@ -239,7 +241,28 @@ defmodule Scenic.FromSVG do
           {:text, text_value, opts}
       end)
 
-    {:group, children, []}
+    case children do
+      [] ->
+        x = (scale_x * xpath(node, ~x"./@x"f)) |> trunc
+        y = (scale_y * xpath(node, ~x"./@y"f)) |> trunc
+        text_value = node |> xpath(~x"./text()"s)
+
+        opts =
+          [
+            fill_from_style(node_style),
+            stroke_from_style(node_style),
+            font_size_from_style(node_style),
+            text_align: :left,
+            # XXX
+            font: :roboto,
+            t: {x, y}
+          ]
+          |> Enum.filter(& &1)
+
+        {:text, text_value, opts}
+      children ->
+        {:group, children, []}
+    end
   end
 
   defp node_to_prim({:xmlElement, :g, :g, _, _, _, _, _, children, _, _, _} = node) do
