@@ -55,8 +55,7 @@ defmodule Scenic.FromSVG do
   def draw_svg(graph, svg) do
     svg
     |> svg_to_mfas()
-
-    Enum.reduce(graph, fn {m, f, a}, graph -> apply(m, f, [graph | a]) end)
+    |> Enum.reduce(graph, fn {m, f, a}, graph -> apply(m, f, [graph | a]) end)
   end
 
   defp node_to_mfa({:xmlElement, :rect, :rect, _, _, _, _, _, [], _, _, _} = node) do
