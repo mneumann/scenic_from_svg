@@ -12,6 +12,7 @@ defmodule ScenicFromSvgTest do
   defp test_fixture(fixture) do
     input_svg_file = Path.join(["test", "fixtures", fixture, "input.svg"])
     expected_prim_file = Path.join(["test", "fixtures", fixture, "expected.prim"])
+
     given_prim =
       File.read!(input_svg_file)
       |> Scenic.FromSVG.svg_to_prim()

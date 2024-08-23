@@ -195,7 +195,7 @@ defmodule Scenic.FromSVG do
 
   defp node_to_prim({:xmlElement, :g, :g, _, _, _, _, _, children, _, _, _} = node) do
     style = parse_style(node)
-    matrix = node |> xpath(~x"./@transform"so) |> transform_matrix()
+    transform_opts = parse_transform(node)
 
     children =
       children
@@ -205,8 +205,8 @@ defmodule Scenic.FromSVG do
     opts =
       [
         fill_from_style(style),
-        stroke_from_style(style),
-        matrix && {:matrix, matrix}
+        stroke_from_style(style)
+        | transform_opts
       ]
       |> Enum.filter(& &1)
 
@@ -215,6 +215,7 @@ defmodule Scenic.FromSVG do
 
   defp node_to_prim({:xmlElement, :path, :path, _, _, _, _, _, _, _, _, _} = node) do
     style = parse_style(node)
+    transform_opts = parse_transform(node)
     _id = node |> xpath(~x"./@id"so)
     d = node |> xpath(~x"./@d"s)
 
@@ -226,6 +227,7 @@ defmodule Scenic.FromSVG do
       [
         fill_from_style(style),
         stroke_from_style(style)
+        | transform_opts
       ]
       |> Enum.filter(& &1)
 
@@ -234,26 +236,52 @@ defmodule Scenic.FromSVG do
 
   defp node_to_prim(_node), do: nil
 
-  defp transform_matrix("matrix(" <> s) do
-    # https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
-    [a, b, c, d, e, f] =
-      s
-      |> String.trim_trailing(")")
-      |> String.split([" ", ","], trim: true)
-      |> Enum.map(&Float.parse/1)
-      |> Enum.map(fn {num, ""} -> num end)
-
-    [
-      [a, c, e, 0],
-      [b, d, f, 0],
-      [0, 0, 1, 0],
-      [0, 0, 0, 0]
-    ]
-    |> Enum.flat_map(fn x -> x end)
-    |> Scenic.Math.Matrix.Utils.to_binary()
+  defp parse_transform(node) do
+    (xpath(node, ~x"./@transform"so) || "") |> parse_transform([])
   end
 
-  defp transform_matrix(_), do: nil
+  defp parse_transform("", opts), do: Enum.reverse(opts)
+  defp parse_transform(" " <> rest, opts), do: parse_transform(rest, opts)
+
+  defp parse_transform("scale(" <> rest, opts) do
+    {scale_x, <<",", rest::binary>>} = Float.parse(rest)
+    {scale_y, ")"} = Float.parse(rest)
+    parse_transform(rest, [{:scale, {scale_x, scale_y}} | opts])
+  end
+
+  defp parse_transform("matrix(" <> rest, opts) do
+    # https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
+    [args, rest] = String.split(rest, ")")
+
+    [a, b, c, d, e, f] = parse_floats(args)
+
+    matrix =
+      [
+        [a, c, e, 0],
+        [b, d, f, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 0]
+      ]
+      |> Enum.flat_map(fn x -> x end)
+      |> Scenic.Math.Matrix.Utils.to_binary()
+
+    parse_transform(rest, [{:matrix, matrix} | opts])
+  end
+
+  defp parse_transform("translate(" <> rest, opts) do
+    [args, rest] = String.split(rest, ")")
+
+    [x, y] = parse_floats(args)
+
+    parse_transform(rest, [{:t, {x, y}} | opts])
+  end
+
+  defp parse_floats(s) do
+    s
+    |> String.split([" ", ","], trim: true)
+    |> Enum.map(&Float.parse/1)
+    |> Enum.map(fn {num, ""} -> num end)
+  end
 
   defp parse_style(node) do
     (xpath(node, ~x"./@style"so) || "")
