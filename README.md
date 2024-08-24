@@ -1,5 +1,7 @@
 # Scenic.FromSVG - Derive Scenic primitives from SVG
 
+![Screenshot of Scenic.FromSVG vs Inkscape](./screenshot.jpg)
+
 * This library derives [Scenic][scenic] primitives from Scalable Vector
   Graphics (SVG), either at runtime or compile-time. To put in other
   words: It converts SVG into Scenic drawing primitives.
@@ -18,6 +20,10 @@
   offered by the Scenic framework. Examples for such primitives are:
   `circle`, `rect` or `text`. They more or less directly map to SVG
   primitives like `<circle>`, `<rect>` or `<text>`.
+
+## Example
+
+    > elixir example.ex
 
 ## Limitations
 
