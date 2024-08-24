@@ -23,7 +23,7 @@
 
 ## Example
 
-    > elixir example.ex
+    > elixir example.exs
 
 ## Limitations
 
