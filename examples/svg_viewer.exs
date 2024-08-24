@@ -16,9 +16,9 @@ defmodule Example.Scene.Main do
   alias Scenic.Graph
   import Scenic.Primitives
 
-  def init(scene, _param, _opts) do
+  def init(scene, svgfile, _opts) do
     svg_spec =
-      "example.svg"
+      svgfile
       |> File.read!()
       |> Scenic.FromSVG.svg_to_prim()
       |> Scenic.FromSVG.prim_spec()
@@ -37,17 +37,19 @@ defmodule Example.Scene.Main do
 end
 
 defmodule Main do
-  def main do
+  def main([svgfile]) do
+    size = Scenic.FromSVG.svg_size(svgfile)
+
     main_viewport_config = [
       name: :main_viewport,
-      size: {640, 480},
+      size: {size.width, size.height},
       theme: :dark,
-      default_scene: Example.Scene.Main,
+      default_scene: {Example.Scene.Main, svgfile},
       drivers: [
         [
           module: Scenic.Driver.Local,
           name: :local,
-          window: [resizeable: true, title: "Scenic from SVG"],
+          window: [resizeable: true, title: "Scenic SVG Viewer"],
           on_close: :stop_system,
           cursor: true
         ]
@@ -64,4 +66,4 @@ defmodule Main do
   end
 end
 
-Main.main()
+Main.main(System.argv)

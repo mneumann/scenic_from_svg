@@ -5,6 +5,19 @@ defmodule Scenic.FromSVG do
 
   import SweetXml
 
+  @spec svg_size(binary()) :: %{width: integer(), height: integer()}
+  @doc """
+  Returns the size (width/height) of the SVG.
+  """
+  def svg_size(svg) do
+    svg = parse(svg)
+
+    %{
+      width: xpath(svg, ~x"///svg/width"i),
+      height: xpath(svg, ~x"///svg/width"i)
+    }
+  end
+
   @type prim_opts :: [any()]
   @type prim ::
           {:rect, {Float.t(), Float.t()}, prim_opts()}
