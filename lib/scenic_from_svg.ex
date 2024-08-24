@@ -13,8 +13,8 @@ defmodule Scenic.FromSVG do
     svg = parse(svg)
 
     %{
-      width: xpath(svg, ~x"///svg/width"i),
-      height: xpath(svg, ~x"///svg/width"i)
+      width: xpath(svg, ~x"///svg/@width"i),
+      height: xpath(svg, ~x"///svg/@height"i)
     }
   end
 

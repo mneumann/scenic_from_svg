@@ -2,7 +2,8 @@
 
 Mix.install([
   {:scenic_driver_local, "~> 0.12.0-rc.0"},
-  {:scenic_from_svg, github: "mneumann/scenic_from_svg"}
+  #{:scenic_from_svg, github: "mneumann/scenic_from_svg"}
+  {:scenic_from_svg, path: "."}
 ])
 
 Application.put_env(:scenic, :assets, module: Example.Assets)
@@ -38,7 +39,7 @@ end
 
 defmodule Main do
   def main([svgfile]) do
-    size = Scenic.FromSVG.svg_size(svgfile)
+    size = File.read!(svgfile) |> Scenic.FromSVG.svg_size()
 
     main_viewport_config = [
       name: :main_viewport,
