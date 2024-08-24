@@ -6,6 +6,12 @@ defmodule Scenic.FromSVG.Path do
   Lower case opcodes use relative coordinates.
   """
 
+  @type op :: ?M | ?m | ?L | ?l | ?V | ?v | ?H | ?h | ?Z | ?z | ?C | ?c
+  @type token :: op() | Float.t()
+
+  @spec tokenize(String.t()) :: [token()]
+  @spec reduce_tokens([token()]) :: [Scenic.Primitive.Path.cmd()]
+
   def tokenize(d), do: tokenize(d, [])
   def reduce_tokens(tokens), do: reduce_tokens(tokens, [:begin], {0.0, 0.0, nil})
 

@@ -5,10 +5,14 @@ defmodule Scenic.FromSVG do
 
   import SweetXml
 
-  @spec svg_size(binary()) :: %{width: integer(), height: integer()}
+  @type svg :: String.t()
+
+  @spec svg_size(svg()) :: %{width: integer(), height: integer()}
+
   @doc """
   Returns the size (width/height) of the SVG.
   """
+
   def svg_size(svg) do
     svg = parse(svg)
 
@@ -27,7 +31,7 @@ defmodule Scenic.FromSVG do
           | {:path, [Scenic.Primitive.Path.cmd()], prim_opts()}
           | {:group, [prim()], prim_opts()}
 
-  @spec svg_to_prim(binary()) :: prim()
+  @spec svg_to_prim(svg()) :: prim()
 
   @doc """
   Parses the SVG into a (complex) drawing primitive. As :group is a drawing primitive,
@@ -99,7 +103,7 @@ defmodule Scenic.FromSVG do
     {:group, children, []}
   end
 
-  @spec svg_spec(binary()) :: Scenic.Graph.deferred()
+  @spec svg_spec(svg()) :: Scenic.Graph.deferred()
 
   @doc """
   Converts the SVG into a deferred graph.

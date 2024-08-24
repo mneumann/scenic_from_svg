@@ -2,9 +2,9 @@
 
 - [x] Add proper support for grouping (needs intermediary represenation)
 
-- [ ] Add @type :: svg and use it
+- [x] Add @type :: svg and use it
 
-- [ ] Use String.t() instead of binary()
+- [x] Use String.t() instead of binary()
 
 - [ ] Extend `parse_color()` to support all HTML codes
 
