@@ -133,7 +133,7 @@ defmodule Scenic.FromSVG do
   end
 
   defp node_to_prim({:xmlElement, :circle, :circle, _, _, _, _, _, [], _, _, _} = node) do
-    style = node |> parse_style()
+    style = get_style(node)
     _id = node |> xpath(~x"./@id"so)
     cx = node |> xpath(~x"./@cx"f)
     cy = node |> xpath(~x"./@cy"f)
@@ -154,7 +154,7 @@ defmodule Scenic.FromSVG do
   end
 
   defp node_to_prim({:xmlElement, :ellipse, :ellipse, _, _, _, _, _, [], _, _, _} = node) do
-    style = node |> parse_style()
+    style = get_style(node)
     _id = node |> xpath(~x"./@id"so)
     cx = node |> xpath(~x"./@cx"f)
     cy = node |> xpath(~x"./@cy"f)
@@ -176,7 +176,7 @@ defmodule Scenic.FromSVG do
   end
 
   defp node_to_prim({:xmlElement, :text, :text, _, _, _, _, _, _, _, _, _} = node) do
-    node_style = parse_style(node)
+    node_style = get_style(node)
     _id = node |> xpath(~x"./@id"so)
     # node_x = node |> xpath(~x"./@x"f) |> trunc
     # node_y = node |> xpath(~x"./@y"f) |> trunc
@@ -198,7 +198,7 @@ defmodule Scenic.FromSVG do
       tspans
       |> Enum.map(fn
         tspan ->
-          style = Map.merge(node_style, parse_style(tspan))
+          style = Map.merge(node_style, get_style(tspan))
           _id = tspan |> xpath(~x"./@id"so)
           x = (scale_x * xpath(tspan, ~x"./@x"f)) |> trunc
           y = (scale_y * xpath(tspan, ~x"./@y"f)) |> trunc
@@ -245,7 +245,7 @@ defmodule Scenic.FromSVG do
   end
 
   defp node_to_prim({:xmlElement, :g, :g, _, _, _, _, _, children, _, _, _} = node) do
-    style = parse_style(node)
+    style = get_style(node)
 
     children =
       children
@@ -264,7 +264,7 @@ defmodule Scenic.FromSVG do
   end
 
   defp node_to_prim({:xmlElement, :path, :path, _, _, _, _, _, _, _, _, _} = node) do
-    style = parse_style(node)
+    style = get_style(node)
     _id = node |> xpath(~x"./@id"so)
     d = node |> xpath(~x"./@d"s)
 
@@ -307,6 +307,28 @@ defmodule Scenic.FromSVG do
   defp merge_opts(_key, [opt]) do
     # All other options should be non-duplicated
     opt
+  end
+
+  defp get_style(node) do
+    parse_style(node)
+    |> Map.merge(parse_style_attrs(node))
+  end
+
+  defp parse_style_attrs(node) do
+    [
+      {"fill", xpath(node, ~x"./@fill"so)},
+      {"stroke", xpath(node, ~x"./@stroke"so)},
+      {"font-size", xpath(node, ~x"./@font-size"so)},
+      {"font-family", xpath(node, ~x"./@font-family"so)},
+      {"font-weight", xpath(node, ~x"./@font-weight"so)},
+      {"text-anchor", xpath(node, ~x"./@text-anchor"so)}
+    ]
+    |> Enum.flat_map(fn
+      {_attr, nil} -> []
+      {_attr, ""} -> []
+      kv -> [kv]
+    end)
+    |> Enum.into(%{})
   end
 
   defp parse_transform(node) do

@@ -4,15 +4,14 @@ defmodule ScenicFromSvgTest do
 
   @commit_fixtures true
 
-  test "it converts example/input.svg" do
-    test_fixture("example")
-    test_fixture("simple")
-    test_fixture("complex")
+  test "it converts fixtures" do
+    Path.wildcard("test/fixtures/*")
+    |> Enum.each(&test_fixture/1)
   end
 
-  defp test_fixture(fixture) do
-    input_svg_file = Path.join(["test", "fixtures", fixture, "input.svg"])
-    expected_prim_file = Path.join(["test", "fixtures", fixture, "expected.prim"])
+  defp test_fixture(fixture_path) do
+    input_svg_file = Path.join([fixture_path, "input.svg"])
+    expected_prim_file = Path.join([fixture_path, "expected.prim"])
 
     given_prim =
       File.read!(input_svg_file)
