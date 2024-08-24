@@ -4,7 +4,7 @@ defmodule ScenicFromSvg.MixProject do
   def project do
     [
       app: :scenic_from_svg,
-      version: "0.1.0",
+      version: "0.1.0-rc.0",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       # build_embedded: true,
