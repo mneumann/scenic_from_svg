@@ -1,4 +1,4 @@
-# Scenic.FromSVG - Derive Scenic primitives from SVG
+# Scenic.FromSVG - Rapid UI prototyping for Scenic
 
 ![Screenshot of Scenic.FromSVG vs Inkscape](./screenshot.jpg)
 
