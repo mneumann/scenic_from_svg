@@ -42,7 +42,7 @@ defmodule Scenic.FromSVG do
          {:group,
           [
             {:text, "Hello",
-             [fill: {0, 0, 0, 255}, font_size: 64, text_align: :left, font: :roboto, t: {80, 80}]}
+             [fill: {0, 0, 0, 255}, font: :roboto, font_size: 64, t: {80, 80}, text_align: :left]}
           ], []},
          {:circle, 20.0, [fill: {173, 28, 28, 181}, t: {180.0, 180.0}]},
          {:group,
@@ -127,7 +127,7 @@ defmodule Scenic.FromSVG do
         stroke_from_style(style),
         t: {x, y}
       ]
-      |> Enum.filter(& &1)
+      |> normalize_opts
 
     {:rect, {width, height}, opts}
   end
@@ -139,27 +139,16 @@ defmodule Scenic.FromSVG do
     cy = node |> xpath(~x"./@cy"f)
     r = node |> xpath(~x"./@r"f)
 
-    # XXX: what if both cx/cy and transform is specified?
-    transform_opts =
-      parse_transform(node)
-      |> Enum.map(fn
-        {:t, {tx, ty}} -> {:t, {tx + cx, ty + cy}}
-        x -> x
-      end)
-
-    transform_opts =
-      case Keyword.get(transform_opts, :t) do
-        nil -> [{:t, {cx, cy}} | transform_opts]
-        _ -> transform_opts
-      end
+    # XXX: what if both cx/cy and transform is specified? Do they add up?
 
     opts =
       [
         fill_from_style(style),
-        stroke_from_style(style)
-        | transform_opts
+        stroke_from_style(style),
+        parse_transform(node),
+        t: {cx, cy}
       ]
-      |> Enum.filter(& &1)
+      |> normalize_opts
 
     {:circle, r, opts}
   end
@@ -173,26 +162,15 @@ defmodule Scenic.FromSVG do
     ry = node |> xpath(~x"./@ry"f)
 
     # XXX: what if both cx/cy and transform is specified?
-    transform_opts =
-      parse_transform(node)
-      |> Enum.map(fn
-        {:t, {tx, ty}} -> {:t, {tx + cx, ty + cy}}
-        x -> x
-      end)
-
-    transform_opts =
-      case Keyword.get(transform_opts, :t) do
-        nil -> [{:t, {cx, cy}} | transform_opts]
-        _ -> transform_opts
-      end
 
     opts =
       [
         fill_from_style(style),
-        stroke_from_style(style)
-        | transform_opts
+        stroke_from_style(style),
+        parse_transform(node),
+        t: {cx, cy}
       ]
-      |> Enum.filter(& &1)
+      |> normalize_opts
 
     {:ellipse, {rx, ry}, opts}
   end
@@ -236,7 +214,7 @@ defmodule Scenic.FromSVG do
               font: :roboto,
               t: {x, y}
             ]
-            |> Enum.filter(& &1)
+            |> normalize_opts
 
           {:text, text_value, opts}
       end)
@@ -257,9 +235,10 @@ defmodule Scenic.FromSVG do
             font: :roboto,
             t: {x, y}
           ]
-          |> Enum.filter(& &1)
+          |> normalize_opts
 
         {:text, text_value, opts}
+
       children ->
         {:group, children, []}
     end
@@ -267,7 +246,6 @@ defmodule Scenic.FromSVG do
 
   defp node_to_prim({:xmlElement, :g, :g, _, _, _, _, _, children, _, _, _} = node) do
     style = parse_style(node)
-    transform_opts = parse_transform(node)
 
     children =
       children
@@ -277,17 +255,16 @@ defmodule Scenic.FromSVG do
     opts =
       [
         fill_from_style(style),
-        stroke_from_style(style)
-        | transform_opts
+        stroke_from_style(style),
+        parse_transform(node)
       ]
-      |> Enum.filter(& &1)
+      |> normalize_opts
 
     {:group, children, opts}
   end
 
   defp node_to_prim({:xmlElement, :path, :path, _, _, _, _, _, _, _, _, _} = node) do
     style = parse_style(node)
-    transform_opts = parse_transform(node)
     _id = node |> xpath(~x"./@id"so)
     d = node |> xpath(~x"./@d"s)
 
@@ -298,15 +275,39 @@ defmodule Scenic.FromSVG do
     opts =
       [
         fill_from_style(style),
-        stroke_from_style(style)
-        | transform_opts
+        stroke_from_style(style),
+        parse_transform(node)
       ]
-      |> Enum.filter(& &1)
+      |> normalize_opts
 
     {:path, path_cmds, opts}
   end
 
   defp node_to_prim(_node), do: nil
+
+  defp normalize_opts(opts) do
+    # order in which opts are specified does not matter for Scenic!
+
+    opts
+    |> List.flatten()
+    |> Enum.filter(& &1)
+    |> Enum.group_by(fn {k, _} -> k end)
+    |> Enum.map(fn {k, optlist} -> merge_opts(k, optlist) end)
+    |> Enum.sort_by(fn {k, _} -> k end)
+    |> Enum.to_list()
+  end
+
+  defp merge_opts(:t, transforms) do
+    # :t transformations add up
+    tx = transforms |> Enum.sum_by(fn {:t, {x, _y}} -> x end)
+    ty = transforms |> Enum.sum_by(fn {:t, {_x, y}} -> y end)
+    {:t, {tx, ty}}
+  end
+
+  defp merge_opts(_key, [opt]) do
+    # All other options should be non-duplicated
+    opt
+  end
 
   defp parse_transform(node) do
     (xpath(node, ~x"./@transform"so) || "") |> parse_transform([])

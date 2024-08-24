@@ -4696,10 +4696,10 @@
       {:text, "Scenic from SVG",
        [
          fill: {173, 28, 28, 181},
-         font_size: 26,
-         text_align: :left,
          font: :roboto,
-         t: {12, 40}
+         font_size: 26,
+         t: {12, 40},
+         text_align: :left
        ]}
     ], []},
    {:path,
