@@ -12,7 +12,6 @@ defmodule Scenic.FromSVG.Path do
   @typep op :: ?M | ?m | ?L | ?l | ?V | ?v | ?H | ?h | ?Z | ?z | ?C | ?c
   @typep token :: op() | Float.t()
 
-
   @doc """
   Parses a SVG path "d" into a list of cmd()s as recognized by Scenic's `path`
   primitive.

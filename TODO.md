@@ -10,7 +10,7 @@
 
 - [ ] Also parse rgb() and rgba()
 
-- [ ] Document public methods of `Scenic.FromSVG.Path` or add @moduledoc false
+- [x] Document public methods of `Scenic.FromSVG.Path` or add @moduledoc false
 
 - [ ] Create a mix task that generates a full scene, based on an SVG
 
