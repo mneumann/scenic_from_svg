@@ -23,7 +23,7 @@
 
 ## Example
 
-    > elixir examples/svg_viewer.exs examples/example.svg
+    > elixir script/svg_viewer.exs script/example.svg
 
 ## Limitations
 
