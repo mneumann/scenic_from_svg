@@ -315,8 +315,8 @@ defmodule Scenic.FromSVG do
 
   defp merge_opts(:t, transforms) do
     # :t transformations add up
-    tx = transforms |> Enum.sum_by(fn {:t, {x, _y}} -> x end)
-    ty = transforms |> Enum.sum_by(fn {:t, {_x, y}} -> y end)
+    tx = transforms |> Enum.map(fn {:t, {x, _y}} -> x end) |> Enum.sum()
+    ty = transforms |> Enum.map(fn {:t, {_x, y}} -> y end) |> Enum.sum()
     {:t, {tx, ty}}
   end
 
