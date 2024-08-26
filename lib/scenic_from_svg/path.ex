@@ -1,20 +1,26 @@
 defmodule Scenic.FromSVG.Path do
   @moduledoc """
-  Implements parsing and conversion of SVG path "d" attribute.
+  Implements parsing and conversion of SVG path "d" attributes into
+  a list of cmd() recognized by Scenic's `path` primitive.
 
-  Upper case opcodes use absolute coordinates.
-  Lower case opcodes use relative coordinates.
+  Upper case opcodes (e.g. "M" or "V") use absolute coordinates.
+  Lower case opcodes (e.g. "m" or "v") use relative coordinates.
   """
 
-  @type op :: ?M | ?m | ?L | ?l | ?V | ?v | ?H | ?h | ?Z | ?z | ?C | ?c
-  @type token :: op() | Float.t()
+  @type cmd :: Scenic.Primitive.Path.cmd()
 
-  @spec tokenize(String.t()) :: [token()]
-  @spec reduce_tokens([token()]) :: [Scenic.Primitive.Path.cmd()]
+  @typep op :: ?M | ?m | ?L | ?l | ?V | ?v | ?H | ?h | ?Z | ?z | ?C | ?c
+  @typep token :: op() | Float.t()
 
-  def tokenize(d), do: tokenize(d, [])
-  def reduce_tokens(tokens), do: reduce_tokens(tokens, [:begin], {0.0, 0.0, nil})
 
+  @doc """
+  Parses a SVG path "d" into a list of cmd()s as recognized by Scenic's `path`
+  primitive.
+  """
+  @spec parse(String.t()) :: [cmd()]
+  def parse(d), do: tokenize(d, []) |> reduce_tokens()
+
+  @spec tokenize(String.t(), [token()]) :: [token()]
   defp tokenize("", tok_rev), do: tok_rev |> Enum.reverse()
 
   defp tokenize(<<sep, rest::binary>>, tok_rev) when sep in [?\s, ?,] do
@@ -30,6 +36,9 @@ defmodule Scenic.FromSVG.Path do
     {num, rest} = rest |> Float.parse()
     tokenize(rest, [num | tok_rev])
   end
+
+  @spec reduce_tokens([token()]) :: [cmd()]
+  defp reduce_tokens(tokens), do: reduce_tokens(tokens, [:begin], {0.0, 0.0, nil})
 
   defp reduce_tokens([], path_cmds_rev, {_cx, _cy, _op}) do
     path_cmds_rev |> Enum.reverse()

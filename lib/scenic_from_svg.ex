@@ -286,8 +286,7 @@ defmodule Scenic.FromSVG do
     d = node |> xpath(~x"./@d"s)
 
     path_cmds =
-      Scenic.FromSVG.Path.tokenize(d)
-      |> Scenic.FromSVG.Path.reduce_tokens()
+      Scenic.FromSVG.Path.parse(d)
 
     opts =
       [
