@@ -27,6 +27,7 @@ defmodule ScenicFromSvg.MixProject do
       {:scenic, "~> 0.12.0-rc.0"},
       {:sweet_xml, "~> 0.7.2"},
       {:ex_doc, "~> 0.31.0", only: :dev},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:scenic_driver_local, "~> 0.12.0-rc.0", only: [:dev, :test]},
       # This override fixes "gmake" vs "make" on DragonFlyBSD
       {:elixir_make, "~> 0.8.4", override: true, only: [:dev, :test]}
