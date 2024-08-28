@@ -12,19 +12,19 @@ defmodule ScenicFromSvgTest do
 
   defp test_fixture(fixture_path) do
     input_svg_file = Path.join([fixture_path, "input.svg"])
-    expected_ex_file = Path.join([fixture_path, "expected.ex"])
+    expected_txt_file = Path.join([fixture_path, "expected.txt"])
 
-    given_ex =
+    given_txt =
       File.read!(input_svg_file)
       |> Scenic.FromSVG.SVG.from_string()
       |> inspect(pretty: true, limit: :infinity)
 
-    expected_ex = File.read!(expected_ex_file)
+    expected_txt = File.read!(expected_txt_file)
 
-    if @commit_fixtures and given_ex != expected_ex do
-      File.write!(expected_ex_file, given_ex)
+    if @commit_fixtures and given_txt != expected_txt do
+      File.write!(expected_txt_file, given_txt)
     end
 
-    {given_ex, expected_ex}
+    {given_txt, expected_txt}
   end
 end
