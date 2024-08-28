@@ -6,7 +6,7 @@
 
 - [x] Use String.t() instead of binary()
 
-- [ ] Extend `parse_color()` to support all HTML codes
+- [x] Extend `parse_color()` to support all HTML codes
 
 - [ ] Also parse rgb() and rgba()
 

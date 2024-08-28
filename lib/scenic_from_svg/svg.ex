@@ -5,6 +5,7 @@ defmodule Scenic.FromSVG.SVG do
 
   import SweetXml
   alias __MODULE__
+  alias Scenic.FromSVG.Colors
 
   @type prim_opts :: keyword()
 
@@ -493,14 +494,23 @@ defmodule Scenic.FromSVG.SVG do
   end
 
   defp parse_color("none"), do: nil
-  defp parse_color("black"), do: {0, 0, 0, 255}
-  defp parse_color("white"), do: {255, 255, 255, 255}
 
-  defp parse_color(<<"#", rh, rl, gh, gl, bh, bl>>) do
-    {red, ""} = Integer.parse(<<rh, rl>>, 16)
-    {green, ""} = Integer.parse(<<gh, gl>>, 16)
-    {blue, ""} = Integer.parse(<<bh, bl>>, 16)
+  defp parse_color(<<"#", r::binary-size(2), g::binary-size(2), b::binary-size(2)>>) do
+    {red, ""} = Integer.parse(r, 16)
+    {green, ""} = Integer.parse(g, 16)
+    {blue, ""} = Integer.parse(b, 16)
     {red, green, blue, 255}
+  end
+
+  defp parse_color(name) when is_binary(name) do
+    normalized_name = name |> String.replace(" ", "") |> String.downcase()
+
+    Colors.colors()
+    |> Map.get(normalized_name)
+    |> then(fn
+      {r, g, b} -> {r, g, b, 255}
+      nil -> nil
+    end)
   end
 
   defp parse_color(_), do: nil
