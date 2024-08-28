@@ -15,7 +15,7 @@ defmodule ScenicFromSvgTest do
 
     given_prim =
       File.read!(input_svg_file)
-      |> Scenic.FromSVG.svg_to_prim()
+      |> Scenic.FromSVG.SVG.from_string()
       |> inspect(pretty: true, limit: :infinity)
 
     expected_prim = File.read!(expected_prim_file)
