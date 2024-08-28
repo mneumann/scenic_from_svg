@@ -18,4 +18,4 @@
 
 - [ ] Generate SVG from intermediate representation
 
-- [ ] Don't store matrix precompiled
+- [x] Don't store matrix precompiled

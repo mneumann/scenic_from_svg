@@ -125,14 +125,32 @@ defmodule Scenic.FromSVG do
   Converts the drawing primitive into a deferred graph.
   """
 
-  def prim_spec({:rect, {w, h}, opts}), do: Scenic.Primitives.rect_spec({w, h}, opts)
-  def prim_spec({:circle, r, opts}), do: Scenic.Primitives.circle_spec(r, opts)
-  def prim_spec({:ellipse, {rx, ry}, opts}), do: Scenic.Primitives.ellipse_spec({rx, ry}, opts)
-  def prim_spec({:text, text, opts}), do: Scenic.Primitives.text_spec(text, opts)
-  def prim_spec({:path, cmds, opts}), do: Scenic.Primitives.path_spec(cmds, opts)
+  def prim_spec({:rect, {w, h}, opts}),
+    do: Scenic.Primitives.rect_spec({w, h}, opts_to_spec(opts))
+
+  def prim_spec({:circle, r, opts}), do: Scenic.Primitives.circle_spec(r, opts_to_spec(opts))
+
+  def prim_spec({:ellipse, {rx, ry}, opts}),
+    do: Scenic.Primitives.ellipse_spec({rx, ry}, opts_to_spec(opts))
+
+  def prim_spec({:text, text, opts}), do: Scenic.Primitives.text_spec(text, opts_to_spec(opts))
+  def prim_spec({:path, cmds, opts}), do: Scenic.Primitives.path_spec(cmds, opts_to_spec(opts))
 
   def prim_spec({:group, children, opts}),
-    do: Scenic.Primitives.group_spec(Enum.map(children, &prim_spec/1), opts)
+    do: Scenic.Primitives.group_spec(Enum.map(children, &prim_spec/1), opts_to_spec(opts))
+
+  defp opts_to_spec(opts), do: Enum.map(opts, &opt_to_spec/1)
+
+  defp opt_to_spec({:matrix, matrix}) do
+    matrix =
+      matrix
+      |> Enum.flat_map(& &1)
+      |> Scenic.Math.Matrix.Utils.to_binary()
+
+    {:matrix, matrix}
+  end
+
+  defp opt_to_spec(opt), do: opt
 
   defp node_to_prim({:xmlElement, :rect, :rect, _, _, _, _, _, [], _, _, _} = node) do
     style = node |> parse_style()
@@ -382,8 +400,6 @@ defmodule Scenic.FromSVG do
         [0, 0, 1, 0],
         [0, 0, 0, 0]
       ]
-      |> Enum.flat_map(fn x -> x end)
-      |> Scenic.Math.Matrix.Utils.to_binary()
 
     parse_transform(rest, [{:matrix, matrix} | opts])
   end
