@@ -58,7 +58,7 @@ defmodule Scenic.FromSVG.SVG do
              {:group,
               [
                 {:text, "Hello",
-                 [fill: {0, 0, 0, 255}, font: :roboto, font_size: 64, t: {80, 80}, text_align: :left]}
+                 [fill: {0, 0, 0}, font: :roboto, font_size: 64, t: {80, 80}, text_align: :left]}
               ], []},
              {:circle, 20.0, [fill: {173, 28, 28, 181}, t: {180.0, 180.0}]},
              {:group,
@@ -85,7 +85,7 @@ defmodule Scenic.FromSVG.SVG do
                    {:line_to, 198.94046000000003, 278.49936},
                    :close_path
                  ], []}
-              ], [{:fill, {255, 255, 255, 255}}, {:stroke, {2, {0, 0, 0}}}]}
+              ], [{:fill, {255, 255, 255}}, {:stroke, {2, {0, 0, 0}}}]}
            ], []}}
   """
   def from_string(svgstr) when is_binary(svgstr) do
@@ -432,10 +432,13 @@ defmodule Scenic.FromSVG.SVG do
   defp put_style(map, key, value), do: Map.put(map, key, value |> String.trim())
 
   defp fill_from_style(style) do
-    case {fill_color(style), fill_opacity(style)} do
-      {nil, _} -> nil
-      {{r, g, b}, opacity} -> {:fill, {r, g, b, opacity}}
-    end
+    fill_color(style)
+    |> put_opacity(fill_opacity(style))
+    |> simplify_color()
+    |> then(fn
+      nil -> nil
+      color -> {:fill, color}
+    end)
   end
 
   defp fill_color(style), do: parse_color(style["fill"] || "none")
@@ -445,24 +448,35 @@ defmodule Scenic.FromSVG.SVG do
     trunc(opacity * 255)
   end
 
-  defp fill_opacity(_style), do: 255
+  defp fill_opacity(_style), do: nil
 
   defp stroke_from_style(style) do
     stroke = style["stroke"] |> parse_color()
     stroke_opacity = style["stroke-opacity"] |> parse_float()
     stroke_width = style["stroke-width"] |> parse_float()
 
-    case {stroke, stroke_opacity, stroke_width} do
-      {{r, g, b}, nil, width} when is_float(width) ->
-        {:stroke, {trunc(width), {r, g, b}}}
+    stroke_color = stroke |> put_opacity(stroke_opacity) |> simplify_color()
 
-      {{r, g, b}, opacity, width} when is_float(width) ->
-        {:stroke, {trunc(width), {r, g, b, trunc(opacity * 255)}}}
+    case {stroke_color, stroke_width} do
+      {color, width} when is_float(width) ->
+        {:stroke, {trunc(width), color}}
 
       _ ->
         nil
     end
   end
+
+  defp put_opacity(nil, _opacity), do: nil
+  defp put_opacity(color, nil), do: color
+
+  defp put_opacity(color, opacity) when is_float(opacity),
+    do: put_opacity(color, trunc(opacity * 255))
+
+  defp put_opacity({r, g, b, _a}, opacity) when is_integer(opacity), do: {r, g, b, opacity}
+
+  defp simplify_color(nil), do: nil
+  defp simplify_color({r, g, b, 255}), do: {r, g, b}
+  defp simplify_color({r, g, b, a}), do: {r, g, b, a}
 
   defp parse_float(nil), do: nil
 
@@ -479,14 +493,14 @@ defmodule Scenic.FromSVG.SVG do
   end
 
   defp parse_color("none"), do: nil
-  defp parse_color("black"), do: {0, 0, 0}
-  defp parse_color("white"), do: {255, 255, 255}
+  defp parse_color("black"), do: {0, 0, 0, 255}
+  defp parse_color("white"), do: {255, 255, 255, 255}
 
   defp parse_color(<<"#", rh, rl, gh, gl, bh, bl>>) do
     {red, ""} = Integer.parse(<<rh, rl>>, 16)
     {green, ""} = Integer.parse(<<gh, gl>>, 16)
     {blue, ""} = Integer.parse(<<bh, bl>>, 16)
-    {red, green, blue}
+    {red, green, blue, 255}
   end
 
   defp parse_color(_), do: nil
