@@ -15,3 +15,7 @@
 - [ ] Create a mix task that generates a full scene, based on an SVG
 
 - [ ] I likely got closing a <path> with "z" or "Z" wrong 
+
+- [ ] Generate SVG from intermediate representation
+
+- [ ] Don't store matrix precompiled
