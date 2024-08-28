@@ -20,9 +20,10 @@ defmodule Scenic.FromSVG.SVG do
           | {:group, [prim()], prim_opts()}
 
   @type t :: %SVG{
-    width: integer(),
-    height: integer(),
-    root_prim: prim()}
+          width: integer(),
+          height: integer(),
+          root_prim: prim()
+        }
 
   defstruct [:width, :height, :root_prim]
 
@@ -489,5 +490,4 @@ defmodule Scenic.FromSVG.SVG do
   end
 
   defp parse_color(_), do: nil
-
 end
