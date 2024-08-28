@@ -22,7 +22,11 @@ defmodule Scenic.FromSVG do
     }
   end
 
-  @type prim_opts :: [any()]
+  @type prim_opts :: keyword()
+
+  @typedoc """
+  Represents a primitive Scenic drawing operation.
+  """
   @type prim ::
           {:rect, {Float.t(), Float.t()}, prim_opts()}
           | {:circle, Float.t(), prim_opts()}
