@@ -97,7 +97,7 @@ defmodule Scenic.FromSVG.SVG do
     {:xmlElement, :svg, :svg, _, _, _, _, _attrs, children, _, _, _} =
       svgdoc |> xpath(~x"///svg"e)
 
-    children =
+    prims =
       children
       |> Enum.map(&node_to_prim/1)
       |> Enum.filter(& &1)
@@ -105,7 +105,7 @@ defmodule Scenic.FromSVG.SVG do
     %SVG{
       width: width,
       height: height,
-      root_prim: {:group, children, []}
+      root_prim: {:group, prims, []}
     }
   end
 
