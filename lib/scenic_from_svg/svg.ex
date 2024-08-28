@@ -435,10 +435,9 @@ defmodule Scenic.FromSVG.SVG do
   defp fill_from_style(style) do
     fill_color(style)
     |> put_opacity(fill_opacity(style))
-    |> simplify_color()
     |> then(fn
       nil -> nil
-      color -> {:fill, color}
+      color -> {:fill, color |> simplify_color()}
     end)
   end
 
@@ -455,12 +454,11 @@ defmodule Scenic.FromSVG.SVG do
     stroke = style["stroke"] |> parse_color()
     stroke_opacity = style["stroke-opacity"] |> parse_float()
     stroke_width = style["stroke-width"] |> parse_float()
-
-    stroke_color = stroke |> put_opacity(stroke_opacity) |> simplify_color()
+    stroke_color = stroke |> put_opacity(stroke_opacity)
 
     case {stroke_color, stroke_width} do
-      {color, width} when is_float(width) ->
-        {:stroke, {trunc(width), color}}
+      {{r, g, b, a}, width} when is_float(width) ->
+        {:stroke, {trunc(width), {r, g, b, a} |> simplify_color()}}
 
       _ ->
         nil
@@ -476,6 +474,8 @@ defmodule Scenic.FromSVG.SVG do
   defp put_opacity({r, g, b, _a}, opacity) when is_integer(opacity), do: {r, g, b, opacity}
 
   defp simplify_color(nil), do: nil
+  defp simplify_color({0, 0, 0, 255}), do: :black
+  defp simplify_color({255, 255, 255, 255}), do: :white
   defp simplify_color({r, g, b, 255}), do: {r, g, b}
   defp simplify_color({r, g, b, a}), do: {r, g, b, a}
 

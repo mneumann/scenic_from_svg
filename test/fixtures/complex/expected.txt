@@ -202,79 +202,78 @@
            {:line_to, 170.8826, 85.77930000000002},
            :close_path
          ], [fill: {212, 208, 0}, stroke: {1, {90, 0, 0}}]},
-        {:circle, 10.0,
-         [fill: {193, 0, 0}, stroke: {1, nil}, t: {102.004, 98.416}]},
+        {:circle, 10.0, [fill: {193, 0, 0}, t: {102.004, 98.416}]},
         {:group,
          [
            {:group,
             [
               {:ellipse, {5.715116, 100.0},
-               [rotate: 2.29681, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: 2.29681, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {26.669981, 100.0},
-               [rotate: 11.172, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: 11.172, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {45.8074, 100.0},
-               [rotate: 21.1506, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: 21.1506, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {61.823189, 100.0},
-               [rotate: 33.4178, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: 33.4178, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {73.6259, 100.0},
-               [rotate: 49.6243, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: 49.6243, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {80.411194, 100.0},
-               [rotate: 71.2789, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: 71.2789, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {81.71666, 100.0},
-               [rotate: -83.0492, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: -83.0492, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {77.453346, 100.0},
-               [rotate: -59.0229, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: -59.0229, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {67.911781, 100.0},
-               [rotate: -40.3766, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: -40.3766, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {53.74221, 100.0},
-               [rotate: -26.501, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: -26.501, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {35.910263, 100.0},
-               [rotate: -15.6291, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]},
+               [rotate: -15.6291, stroke: {1, :black}, t: {0.0, 0.0}]},
               {:ellipse, {15.631158, 100.0},
-               [rotate: -6.36175, stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]}
+               [rotate: -6.36175, stroke: {1, :black}, t: {0.0, 0.0}]}
             ], []},
            {:group,
             [
               {:ellipse, {15.643447, 8.973712},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 80.906693}]},
+               [stroke: {1, :black}, t: {0.0, 80.906693}]},
               {:ellipse, {30.901699, 17.725487},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 77.905991}]},
+               [stroke: {1, :black}, t: {0.0, 77.905991}]},
               {:ellipse, {45.399052, 26.040825},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 72.986984}]},
+               [stroke: {1, :black}, t: {0.0, 72.986984}]},
               {:ellipse, {58.778526, 33.714977},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 66.27079}]},
+               [stroke: {1, :black}, t: {0.0, 66.27079}]},
               {:ellipse, {70.710678, 40.558979},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 57.922798}]},
+               [stroke: {1, :black}, t: {0.0, 57.922798}]},
               {:ellipse, {80.901703, 46.404308},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 48.148548}]},
+               [stroke: {1, :black}, t: {0.0, 48.148548}]},
               {:ellipse, {89.100655, 51.107037},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 37.188725}]},
+               [stroke: {1, :black}, t: {0.0, 37.188725}]},
               {:ellipse, {95.105652, 54.551361},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 25.31319}]},
+               [stroke: {1, :black}, t: {0.0, 25.31319}]},
               {:ellipse, {98.768837, 56.652477},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 12.814362}]},
+               [stroke: {1, :black}, t: {0.0, 12.814362}]},
               {:ellipse, {100.0, 57.358643},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, 5.0156942e-15}]},
+               [stroke: {1, :black}, t: {0.0, 5.0156942e-15}]},
               {:ellipse, {98.768837, 56.652477},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, -12.814362}]},
+               [stroke: {1, :black}, t: {0.0, -12.814362}]},
               {:ellipse, {95.105652, 54.551361},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, -25.31319}]},
+               [stroke: {1, :black}, t: {0.0, -25.31319}]},
               {:ellipse, {89.100655, 51.107037},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, -37.188725}]},
+               [stroke: {1, :black}, t: {0.0, -37.188725}]},
               {:ellipse, {80.901703, 46.404308},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, -48.148548}]},
+               [stroke: {1, :black}, t: {0.0, -48.148548}]},
               {:ellipse, {70.710678, 40.558979},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, -57.922798}]},
+               [stroke: {1, :black}, t: {0.0, -57.922798}]},
               {:ellipse, {58.778526, 33.714977},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, -66.27079}]},
+               [stroke: {1, :black}, t: {0.0, -66.27079}]},
               {:ellipse, {45.399052, 26.040825},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, -72.986984}]},
+               [stroke: {1, :black}, t: {0.0, -72.986984}]},
               {:ellipse, {30.901699, 17.725487},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, -77.905991}]},
+               [stroke: {1, :black}, t: {0.0, -77.905991}]},
               {:ellipse, {15.643447, 8.973712},
-               [stroke: {1, {0, 0, 0}}, t: {0.0, -80.906693}]}
+               [stroke: {1, :black}, t: {0.0, -80.906693}]}
             ], []},
-           {:circle, 100.0, [stroke: {1, {0, 0, 0}}, t: {0.0, 0.0}]}
+           {:circle, 100.0, [stroke: {1, :black}, t: {0.0, 0.0}]}
          ], [t: {505.2644, 122.72638}]},
         {:path,
          [
@@ -919,7 +918,7 @@
            {:line_to, 241.67570999999998, 40.730336},
            {:line_to, 241.67570999999998, 29.511679},
            {:line_to, 244.76081, 18.727619}
-         ], [stroke: {1, {0, 0, 0}}]},
+         ], [stroke: {1, :black}]},
         {:path,
          [
            :begin,
@@ -1003,13 +1002,13 @@
            {:bezier_to, 181.26312, 369.65988000000004, 184.94212,
             370.95588000000004, 184.94212, 372.26488000000006},
            :close_path
-         ], [stroke: {1, {0, 0, 0}}]},
+         ], [stroke: {1, :black}]},
         {:rect, {180.43951, 181.44626},
-         [fill: {212, 41, 0, 40}, stroke: {0, nil}, t: {10.832648, 10.068521}]},
+         [fill: {212, 41, 0, 40}, t: {10.832648, 10.068521}]},
         {:rect, {180.43951, 181.44626},
-         [fill: {76, 41, 0, 40}, stroke: {0, nil}, t: {10.678741, 284.42627}]},
+         [fill: {76, 41, 0, 40}, t: {10.678741, 284.42627}]},
         {:rect, {400.0, 150.0},
-         [fill: {155, 147, 0, 40}, stroke: {1, nil}, t: {221.55367, 312.96509}]}
+         [fill: {155, 147, 0, 40}, t: {221.55367, 312.96509}]}
       ], []},
      {:group,
       [
@@ -1158,7 +1157,7 @@
                ]},
               {:text, "3",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -1166,7 +1165,7 @@
                ]},
               {:text, "4",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -1174,7 +1173,7 @@
                ]},
               {:text, "5",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -1182,7 +1181,7 @@
                ]},
               {:text, "6",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -1190,7 +1189,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -1214,7 +1213,7 @@
                ]},
               {:text, "10",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -1222,7 +1221,7 @@
                ]},
               {:text, "11",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -1230,7 +1229,7 @@
                ]},
               {:text, "12",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -1238,7 +1237,7 @@
                ]},
               {:text, "13",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -1246,7 +1245,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -1270,7 +1269,7 @@
                ]},
               {:text, "17",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -1278,7 +1277,7 @@
                ]},
               {:text, "18",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -1286,7 +1285,7 @@
                ]},
               {:text, "19",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -1294,7 +1293,7 @@
                ]},
               {:text, "20",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -1302,7 +1301,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -1326,7 +1325,7 @@
                ]},
               {:text, "24",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -1334,7 +1333,7 @@
                ]},
               {:text, "25",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -1342,7 +1341,7 @@
                ]},
               {:text, "26",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -1350,7 +1349,7 @@
                ]},
               {:text, "27",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 85},
@@ -1358,7 +1357,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 85},
@@ -1382,7 +1381,7 @@
                ]},
               {:text, "31",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 99},
@@ -1519,7 +1518,7 @@
                ]},
               {:text, "1",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 28},
@@ -1527,7 +1526,7 @@
                ]},
               {:text, "2",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 28},
@@ -1535,7 +1534,7 @@
                ]},
               {:text, "3",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 28},
@@ -1543,7 +1542,7 @@
                ]},
               {:text, "4",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -1567,7 +1566,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -1575,7 +1574,7 @@
                ]},
               {:text, "8",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -1583,7 +1582,7 @@
                ]},
               {:text, "9",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -1591,7 +1590,7 @@
                ]},
               {:text, "10",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -1599,7 +1598,7 @@
                ]},
               {:text, "11",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -1623,7 +1622,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -1631,7 +1630,7 @@
                ]},
               {:text, "15",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -1639,7 +1638,7 @@
                ]},
               {:text, "16",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -1647,7 +1646,7 @@
                ]},
               {:text, "17",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -1655,7 +1654,7 @@
                ]},
               {:text, "18",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -1679,7 +1678,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -1687,7 +1686,7 @@
                ]},
               {:text, "22",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -1695,7 +1694,7 @@
                ]},
               {:text, "23",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -1703,7 +1702,7 @@
                ]},
               {:text, "24",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -1711,7 +1710,7 @@
                ]},
               {:text, "25",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -1735,7 +1734,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -1928,7 +1927,7 @@
                ]},
               {:text, "1",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 28},
@@ -1936,7 +1935,7 @@
                ]},
               {:text, "2",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 28},
@@ -1944,7 +1943,7 @@
                ]},
               {:text, "3",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 28},
@@ -1952,7 +1951,7 @@
                ]},
               {:text, "4",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -1976,7 +1975,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -1984,7 +1983,7 @@
                ]},
               {:text, "8",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -1992,7 +1991,7 @@
                ]},
               {:text, "9",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -2000,7 +1999,7 @@
                ]},
               {:text, "10",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -2008,7 +2007,7 @@
                ]},
               {:text, "11",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -2032,7 +2031,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -2040,7 +2039,7 @@
                ]},
               {:text, "15",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -2048,7 +2047,7 @@
                ]},
               {:text, "16",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -2056,7 +2055,7 @@
                ]},
               {:text, "17",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -2064,7 +2063,7 @@
                ]},
               {:text, "18",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -2088,7 +2087,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -2096,7 +2095,7 @@
                ]},
               {:text, "22",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -2104,7 +2103,7 @@
                ]},
               {:text, "23",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -2112,7 +2111,7 @@
                ]},
               {:text, "24",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -2120,7 +2119,7 @@
                ]},
               {:text, "25",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -2144,7 +2143,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -2152,7 +2151,7 @@
                ]},
               {:text, "29",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -2160,7 +2159,7 @@
                ]},
               {:text, "30",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -2168,7 +2167,7 @@
                ]},
               {:text, "31",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 85},
@@ -2361,7 +2360,7 @@
                ]},
               {:text, "1",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -2385,7 +2384,7 @@
                ]},
               {:text, "4",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -2393,7 +2392,7 @@
                ]},
               {:text, "5",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -2401,7 +2400,7 @@
                ]},
               {:text, "6",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -2409,7 +2408,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -2417,7 +2416,7 @@
                ]},
               {:text, "8",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -2441,7 +2440,7 @@
                ]},
               {:text, "11",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -2449,7 +2448,7 @@
                ]},
               {:text, "12",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -2457,7 +2456,7 @@
                ]},
               {:text, "13",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -2465,7 +2464,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -2473,7 +2472,7 @@
                ]},
               {:text, "15",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -2497,7 +2496,7 @@
                ]},
               {:text, "18",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -2505,7 +2504,7 @@
                ]},
               {:text, "19",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -2513,7 +2512,7 @@
                ]},
               {:text, "20",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -2521,7 +2520,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -2529,7 +2528,7 @@
                ]},
               {:text, "22",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -2553,7 +2552,7 @@
                ]},
               {:text, "25",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -2561,7 +2560,7 @@
                ]},
               {:text, "26",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -2569,7 +2568,7 @@
                ]},
               {:text, "27",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -2577,7 +2576,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 85},
@@ -2585,7 +2584,7 @@
                ]},
               {:text, "29",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 85},
@@ -2738,7 +2737,7 @@
                ]},
               {:text, "2",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 28},
@@ -2746,7 +2745,7 @@
                ]},
               {:text, "3",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 28},
@@ -2754,7 +2753,7 @@
                ]},
               {:text, "4",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 28},
@@ -2762,7 +2761,7 @@
                ]},
               {:text, "5",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 28},
@@ -2770,7 +2769,7 @@
                ]},
               {:text, "6",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -2794,7 +2793,7 @@
                ]},
               {:text, "9",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -2802,7 +2801,7 @@
                ]},
               {:text, "10",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -2810,7 +2809,7 @@
                ]},
               {:text, "11",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -2818,7 +2817,7 @@
                ]},
               {:text, "12",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -2826,7 +2825,7 @@
                ]},
               {:text, "13",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -2850,7 +2849,7 @@
                ]},
               {:text, "16",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -2858,7 +2857,7 @@
                ]},
               {:text, "17",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -2866,7 +2865,7 @@
                ]},
               {:text, "18",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -2874,7 +2873,7 @@
                ]},
               {:text, "19",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -2882,7 +2881,7 @@
                ]},
               {:text, "20",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -2906,7 +2905,7 @@
                ]},
               {:text, "23",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -2914,7 +2913,7 @@
                ]},
               {:text, "24",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -2922,7 +2921,7 @@
                ]},
               {:text, "25",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -2930,7 +2929,7 @@
                ]},
               {:text, "26",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -2938,7 +2937,7 @@
                ]},
               {:text, "27",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -2962,7 +2961,7 @@
                ]},
               {:text, "30",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -2970,7 +2969,7 @@
                ]},
               {:text, "31",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -3163,7 +3162,7 @@
                ]},
               {:text, "1",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 28},
@@ -3171,7 +3170,7 @@
                ]},
               {:text, "2",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 28},
@@ -3179,7 +3178,7 @@
                ]},
               {:text, "3",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -3203,7 +3202,7 @@
                ]},
               {:text, "6",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -3211,7 +3210,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -3219,7 +3218,7 @@
                ]},
               {:text, "8",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -3227,7 +3226,7 @@
                ]},
               {:text, "9",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -3235,7 +3234,7 @@
                ]},
               {:text, "10",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -3259,7 +3258,7 @@
                ]},
               {:text, "13",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -3267,7 +3266,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -3275,7 +3274,7 @@
                ]},
               {:text, "15",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -3283,7 +3282,7 @@
                ]},
               {:text, "16",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -3291,7 +3290,7 @@
                ]},
               {:text, "17",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -3315,7 +3314,7 @@
                ]},
               {:text, "20",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -3323,7 +3322,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -3331,7 +3330,7 @@
                ]},
               {:text, "22",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -3339,7 +3338,7 @@
                ]},
               {:text, "23",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -3347,7 +3346,7 @@
                ]},
               {:text, "24",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -3371,7 +3370,7 @@
                ]},
               {:text, "27",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -3379,7 +3378,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -3387,7 +3386,7 @@
                ]},
               {:text, "29",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -3395,7 +3394,7 @@
                ]},
               {:text, "30",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 85},
@@ -3588,7 +3587,7 @@
                ]},
               {:text, "1",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -3612,7 +3611,7 @@
                ]},
               {:text, "4",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -3620,7 +3619,7 @@
                ]},
               {:text, "5",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -3628,7 +3627,7 @@
                ]},
               {:text, "6",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -3636,7 +3635,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -3644,7 +3643,7 @@
                ]},
               {:text, "8",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -3668,7 +3667,7 @@
                ]},
               {:text, "11",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -3676,7 +3675,7 @@
                ]},
               {:text, "12",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -3684,7 +3683,7 @@
                ]},
               {:text, "13",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -3692,7 +3691,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -3700,7 +3699,7 @@
                ]},
               {:text, "15",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -3724,7 +3723,7 @@
                ]},
               {:text, "18",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -3732,7 +3731,7 @@
                ]},
               {:text, "19",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -3740,7 +3739,7 @@
                ]},
               {:text, "20",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -3748,7 +3747,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -3756,7 +3755,7 @@
                ]},
               {:text, "22",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -3780,7 +3779,7 @@
                ]},
               {:text, "25",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -3788,7 +3787,7 @@
                ]},
               {:text, "26",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -3796,7 +3795,7 @@
                ]},
               {:text, "27",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -3804,7 +3803,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 85},
@@ -3812,7 +3811,7 @@
                ]},
               {:text, "29",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 85},
@@ -3965,7 +3964,7 @@
                ]},
               {:text, "1",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 28},
@@ -3973,7 +3972,7 @@
                ]},
               {:text, "2",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 28},
@@ -3981,7 +3980,7 @@
                ]},
               {:text, "3",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 28},
@@ -3989,7 +3988,7 @@
                ]},
               {:text, "4",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 28},
@@ -3997,7 +3996,7 @@
                ]},
               {:text, "5",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -4021,7 +4020,7 @@
                ]},
               {:text, "8",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -4029,7 +4028,7 @@
                ]},
               {:text, "9",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -4037,7 +4036,7 @@
                ]},
               {:text, "10",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -4045,7 +4044,7 @@
                ]},
               {:text, "11",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -4053,7 +4052,7 @@
                ]},
               {:text, "12",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -4077,7 +4076,7 @@
                ]},
               {:text, "15",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -4085,7 +4084,7 @@
                ]},
               {:text, "16",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -4093,7 +4092,7 @@
                ]},
               {:text, "17",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -4101,7 +4100,7 @@
                ]},
               {:text, "18",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -4109,7 +4108,7 @@
                ]},
               {:text, "19",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -4133,7 +4132,7 @@
                ]},
               {:text, "22",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -4141,7 +4140,7 @@
                ]},
               {:text, "23",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -4149,7 +4148,7 @@
                ]},
               {:text, "24",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -4157,7 +4156,7 @@
                ]},
               {:text, "25",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -4165,7 +4164,7 @@
                ]},
               {:text, "26",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -4189,7 +4188,7 @@
                ]},
               {:text, "29",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -4197,7 +4196,7 @@
                ]},
               {:text, "30",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -4205,7 +4204,7 @@
                ]},
               {:text, "31",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -4398,7 +4397,7 @@
                ]},
               {:text, "1",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 28},
@@ -4406,7 +4405,7 @@
                ]},
               {:text, "2",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -4430,7 +4429,7 @@
                ]},
               {:text, "5",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -4438,7 +4437,7 @@
                ]},
               {:text, "6",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -4446,7 +4445,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -4454,7 +4453,7 @@
                ]},
               {:text, "8",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -4462,7 +4461,7 @@
                ]},
               {:text, "9",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -4486,7 +4485,7 @@
                ]},
               {:text, "12",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -4494,7 +4493,7 @@
                ]},
               {:text, "13",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -4502,7 +4501,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -4510,7 +4509,7 @@
                ]},
               {:text, "15",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -4518,7 +4517,7 @@
                ]},
               {:text, "16",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -4542,7 +4541,7 @@
                ]},
               {:text, "19",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -4550,7 +4549,7 @@
                ]},
               {:text, "20",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -4558,7 +4557,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -4566,7 +4565,7 @@
                ]},
               {:text, "22",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -4574,7 +4573,7 @@
                ]},
               {:text, "23",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -4598,7 +4597,7 @@
                ]},
               {:text, "26",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -4606,7 +4605,7 @@
                ]},
               {:text, "27",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -4614,7 +4613,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -4622,7 +4621,7 @@
                ]},
               {:text, "29",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 85},
@@ -4630,7 +4629,7 @@
                ]},
               {:text, "30",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 85},
@@ -4839,7 +4838,7 @@
                ]},
               {:text, "3",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -4847,7 +4846,7 @@
                ]},
               {:text, "4",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -4855,7 +4854,7 @@
                ]},
               {:text, "5",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -4863,7 +4862,7 @@
                ]},
               {:text, "6",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -4871,7 +4870,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -4895,7 +4894,7 @@
                ]},
               {:text, "10",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -4903,7 +4902,7 @@
                ]},
               {:text, "11",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -4911,7 +4910,7 @@
                ]},
               {:text, "12",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -4919,7 +4918,7 @@
                ]},
               {:text, "13",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -4927,7 +4926,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -4951,7 +4950,7 @@
                ]},
               {:text, "17",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -4959,7 +4958,7 @@
                ]},
               {:text, "18",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -4967,7 +4966,7 @@
                ]},
               {:text, "19",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -4975,7 +4974,7 @@
                ]},
               {:text, "20",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -4983,7 +4982,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -5007,7 +5006,7 @@
                ]},
               {:text, "24",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -5015,7 +5014,7 @@
                ]},
               {:text, "25",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -5023,7 +5022,7 @@
                ]},
               {:text, "26",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -5031,7 +5030,7 @@
                ]},
               {:text, "27",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 85},
@@ -5039,7 +5038,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 85},
@@ -5063,7 +5062,7 @@
                ]},
               {:text, "31",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 99},
@@ -5200,7 +5199,7 @@
                ]},
               {:text, "1",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 28},
@@ -5208,7 +5207,7 @@
                ]},
               {:text, "2",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 28},
@@ -5216,7 +5215,7 @@
                ]},
               {:text, "3",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 28},
@@ -5224,7 +5223,7 @@
                ]},
               {:text, "4",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -5248,7 +5247,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -5256,7 +5255,7 @@
                ]},
               {:text, "8",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -5264,7 +5263,7 @@
                ]},
               {:text, "9",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -5272,7 +5271,7 @@
                ]},
               {:text, "10",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -5280,7 +5279,7 @@
                ]},
               {:text, "11",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -5304,7 +5303,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -5312,7 +5311,7 @@
                ]},
               {:text, "15",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -5320,7 +5319,7 @@
                ]},
               {:text, "16",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -5328,7 +5327,7 @@
                ]},
               {:text, "17",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -5336,7 +5335,7 @@
                ]},
               {:text, "18",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -5360,7 +5359,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -5368,7 +5367,7 @@
                ]},
               {:text, "22",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -5376,7 +5375,7 @@
                ]},
               {:text, "23",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -5384,7 +5383,7 @@
                ]},
               {:text, "24",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -5392,7 +5391,7 @@
                ]},
               {:text, "25",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -5416,7 +5415,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -5424,7 +5423,7 @@
                ]},
               {:text, "29",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -5432,7 +5431,7 @@
                ]},
               {:text, "30",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -5625,7 +5624,7 @@
                ]},
               {:text, "1",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 28},
@@ -5633,7 +5632,7 @@
                ]},
               {:text, "2",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 28},
@@ -5657,7 +5656,7 @@
                ]},
               {:text, "5",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 42},
@@ -5665,7 +5664,7 @@
                ]},
               {:text, "6",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 42},
@@ -5673,7 +5672,7 @@
                ]},
               {:text, "7",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 42},
@@ -5681,7 +5680,7 @@
                ]},
               {:text, "8",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 42},
@@ -5689,7 +5688,7 @@
                ]},
               {:text, "9",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 42},
@@ -5713,7 +5712,7 @@
                ]},
               {:text, "12",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 56},
@@ -5721,7 +5720,7 @@
                ]},
               {:text, "13",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 56},
@@ -5729,7 +5728,7 @@
                ]},
               {:text, "14",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 56},
@@ -5737,7 +5736,7 @@
                ]},
               {:text, "15",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 56},
@@ -5745,7 +5744,7 @@
                ]},
               {:text, "16",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 56},
@@ -5769,7 +5768,7 @@
                ]},
               {:text, "19",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 71},
@@ -5777,7 +5776,7 @@
                ]},
               {:text, "20",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 71},
@@ -5785,7 +5784,7 @@
                ]},
               {:text, "21",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 71},
@@ -5793,7 +5792,7 @@
                ]},
               {:text, "22",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 71},
@@ -5801,7 +5800,7 @@
                ]},
               {:text, "23",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 71},
@@ -5825,7 +5824,7 @@
                ]},
               {:text, "26",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {18, 85},
@@ -5833,7 +5832,7 @@
                ]},
               {:text, "27",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {36, 85},
@@ -5841,7 +5840,7 @@
                ]},
               {:text, "28",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {54, 85},
@@ -5849,7 +5848,7 @@
                ]},
               {:text, "29",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {73, 85},
@@ -5857,7 +5856,7 @@
                ]},
               {:text, "30",
                [
-                 fill: {0, 0, 0},
+                 fill: :black,
                  font: :roboto,
                  font_size: 9,
                  t: {91, 85},
