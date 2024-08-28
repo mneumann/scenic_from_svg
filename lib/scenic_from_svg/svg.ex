@@ -493,6 +493,7 @@ defmodule Scenic.FromSVG.SVG do
     {:font_size, trunc(font_size_in_px)}
   end
 
+  defp parse_color(nil), do: nil
   defp parse_color("none"), do: nil
 
   defp parse_color(<<"#", r::binary-size(2), g::binary-size(2), b::binary-size(2)>>) do
@@ -500,6 +501,37 @@ defmodule Scenic.FromSVG.SVG do
     {green, ""} = Integer.parse(g, 16)
     {blue, ""} = Integer.parse(b, 16)
     {red, green, blue, 255}
+  end
+
+  defp parse_color(
+         <<"#", r::binary-size(2), g::binary-size(2), b::binary-size(2), a::binary-size(2)>>
+       ) do
+    {red, ""} = Integer.parse(r, 16)
+    {green, ""} = Integer.parse(g, 16)
+    {blue, ""} = Integer.parse(b, 16)
+    {alpha, ""} = Integer.parse(a, 16)
+    {red, green, blue, alpha}
+  end
+
+  defp parse_color(<<"#", r::binary-size(1), g::binary-size(1), b::binary-size(1)>>) do
+    # trunc(255.0 / 0xF)
+    coeff = 17
+    {red, ""} = Integer.parse(r, 16)
+    {green, ""} = Integer.parse(g, 16)
+    {blue, ""} = Integer.parse(b, 16)
+    {red * coeff, green * coeff, blue * coeff, 255}
+  end
+
+  defp parse_color(
+         <<"#", r::binary-size(1), g::binary-size(1), b::binary-size(1), a::binary-size(1)>>
+       ) do
+    # trunc(255.0 / 0xF)
+    coeff = 17
+    {red, ""} = Integer.parse(r, 16)
+    {green, ""} = Integer.parse(g, 16)
+    {blue, ""} = Integer.parse(b, 16)
+    {alpha, ""} = Integer.parse(a, 16)
+    {red * coeff, green * coeff, blue * coeff, alpha * coeff}
   end
 
   defp parse_color(name) when is_binary(name) do
@@ -512,6 +544,4 @@ defmodule Scenic.FromSVG.SVG do
       nil -> nil
     end)
   end
-
-  defp parse_color(_), do: nil
 end
